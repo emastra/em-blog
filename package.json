@@ -74,5 +74,9 @@
       "prettier --write"
     ]
   },
-  "packageManager": "yarn@3.6.1"
+  "overrides": {
+    "next-contentlayer": {
+      "next": "$next"
+    }
+  }
 }
