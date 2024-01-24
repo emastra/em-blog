@@ -80,15 +80,20 @@ export default function ListLayoutWithTags({
     <>
       <div>
         {/* title when mobile */}
-        <div className="pb-6 pt-6">
+        {/* <div className="pb-6 pt-6">
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:hidden sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
             {title}
           </h1>
-        </div>
+        </div> */}
 
         <div className="flex sm:space-x-24">
           {/* list of posts */}
           <div className="max-w-2xl">
+            <div className="mb-9">
+              <h2 className="text-xl font-bold uppercase tracking-widest text-primary-500">
+                Last published
+              </h2>
+            </div>
             <ul>
               {displayPosts.map((post) => {
                 const { path, date, title, summary, tags } = post
@@ -103,14 +108,14 @@ export default function ListLayoutWithTags({
                       </dl>
                       <div className="space-y-3">
                         <div>
-                          <h2 className="text-2xl font-bold leading-8 tracking-tight">
+                          <h3 className="text-2xl font-bold leading-8 tracking-tight">
                             <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
                               {title}
                             </Link>
-                          </h2>
-                          <div className="flex flex-wrap">
+                          </h3>
+                          {/* <div className="flex flex-wrap">
                             {tags?.map((tag) => <Tag key={tag} text={tag} />)}
-                          </div>
+                          </div> */}
                         </div>
                         <div className="prose max-w-none text-gray-500 dark:text-gray-400">
                           {summary}
