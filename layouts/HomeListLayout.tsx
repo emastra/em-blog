@@ -22,46 +22,6 @@ interface ListLayoutProps {
   pagination?: PaginationProps
 }
 
-function Pagination({ totalPages, currentPage }: PaginationProps) {
-  const pathname = usePathname()
-  const basePath = pathname.split('/')[1]
-  const prevPage = currentPage - 1 > 0
-  const nextPage = currentPage + 1 <= totalPages
-
-  return (
-    <div className="space-y-2 pb-8 pt-6 md:space-y-5">
-      <nav className="flex justify-between">
-        {!prevPage && (
-          <button className="cursor-auto disabled:opacity-50" disabled={!prevPage}>
-            Previous
-          </button>
-        )}
-        {prevPage && (
-          <Link
-            href={currentPage - 1 === 1 ? `/${basePath}/` : `/${basePath}/page/${currentPage - 1}`}
-            rel="prev"
-          >
-            Previous
-          </Link>
-        )}
-        <span>
-          {currentPage} of {totalPages}
-        </span>
-        {!nextPage && (
-          <button className="cursor-auto disabled:opacity-50" disabled={!nextPage}>
-            Next
-          </button>
-        )}
-        {nextPage && (
-          <Link href={`/${basePath}/page/${currentPage + 1}`} rel="next">
-            Next
-          </Link>
-        )}
-      </nav>
-    </div>
-  )
-}
-
 export default function HomeListLayout({
   posts,
   title,
@@ -70,6 +30,7 @@ export default function HomeListLayout({
 }: ListLayoutProps) {
   const pathname = usePathname()
   console.log('pathname', pathname, pathname.startsWith('/blog'))
+
   const tagCounts = tagData as Record<string, number>
   const tagKeys = Object.keys(tagCounts)
   const sortedTags = tagKeys.sort((a, b) => tagCounts[b] - tagCounts[a])
@@ -135,7 +96,7 @@ export default function HomeListLayout({
                   <li key={t} className="my-3 inline-block">
                     <Link
                       href={`/tags/${slug(t)}`}
-                      className="mr-2 rounded-lg bg-gray-200 px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600"
+                      className="mr-2 rounded-lg bg-gray-200 px-3 py-1.5 text-sm font-medium text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600"
                       aria-label={`View posts tagged ${t}`}
                     >
                       {`${t}`}
