@@ -1,4 +1,4 @@
-import ListLayout from '@/layouts/ListLayoutWithTags'
+import HomeListLayout from '@/layouts/HomeListLayout'
 // import ListLayout2 from '@/layouts/ListLayout'
 import Hero from '@/components/Hero'
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
@@ -24,7 +24,7 @@ export default function BlogPage() {
   return (
     <>
       <Hero />
-      <ListLayout
+      <HomeListLayout
         posts={posts}
         initialDisplayPosts={initialDisplayPosts}
         pagination={pagination}

@@ -69,7 +69,6 @@ export default function ListLayoutWithTags({
   pagination,
 }: ListLayoutProps) {
   const pathname = usePathname()
-  console.log('pathname', pathname, pathname.startsWith('/blog'))
   const tagCounts = tagData as Record<string, number>
   const tagKeys = Object.keys(tagCounts)
   const sortedTags = tagKeys.sort((a, b) => tagCounts[b] - tagCounts[a])
@@ -78,96 +77,86 @@ export default function ListLayoutWithTags({
 
   return (
     <>
-      <div className="flex space-x-12 md:space-x-20 xl:space-x-24">
-        <section className="max-w-2xl">
-          <div className="mb-9">
-            <h2 className="text-xl font-bold uppercase tracking-widest text-primary-500">
-              Last published
-            </h2>
-          </div>
-          <ul>
-            {displayPosts.map((post) => {
-              const { path, date, title, summary, tags } = post
-              return (
-                <li key={path} className="py-5">
-                  <article className="flex flex-col space-y-2 xl:space-y-0">
-                    <dl>
-                      <dt className="sr-only">Published on</dt>
-                      <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                        <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
-                      </dd>
-                    </dl>
-                    <div className="space-y-3">
-                      <div>
-                        <h3 className="text-2xl font-bold leading-8 tracking-tight">
-                          <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
-                            {title}
-                          </Link>
+      <div>
+        <div className="pb-6 pt-6">
+          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:hidden sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+            {title}
+          </h1>
+        </div>
+        <div className="flex sm:space-x-24">
+          <div className="hidden h-full max-h-screen min-w-[280px] max-w-[280px] flex-wrap overflow-auto rounded bg-gray-50 pt-5 shadow-md dark:bg-gray-900/70 dark:shadow-gray-800/40 sm:flex">
+            <div className="px-6 py-4">
+              {pathname.startsWith('/blog') ? (
+                <h3 className="font-bold uppercase text-primary-500">All Posts</h3>
+              ) : (
+                <Link
+                  href={`/blog`}
+                  className="font-bold uppercase text-gray-700 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500"
+                >
+                  All Posts
+                </Link>
+              )}
+              <ul>
+                {sortedTags.map((t) => {
+                  return (
+                    <li key={t} className="my-3">
+                      {pathname.split('/tags/')[1] === slug(t) ? (
+                        <h3 className="inline px-3 py-2 text-sm font-bold uppercase text-primary-500">
+                          {`${t} (${tagCounts[t]})`}
                         </h3>
-                        {/* <div className="flex flex-wrap">
-                            {tags?.map((tag) => <Tag key={tag} text={tag} />)}
-                          </div> */}
-                      </div>
-                      <div className="prose max-w-none text-gray-500 dark:text-gray-400">
-                        {summary}
-                      </div>
-                    </div>
-                  </article>
-                </li>
-              )
-            })}
-          </ul>
-          {/* {pagination && pagination.totalPages > 1 && (
-              <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
-            )} */}
-        </section>
-
-        <section className="hidden h-full min-w-[310px] max-w-[310px] flex-wrap items-start overflow-auto sm:flex xl:min-w-[345px] xl:max-w-[345px]">
+                      ) : (
+                        <Link
+                          href={`/tags/${slug(t)}`}
+                          className="px-3 py-2 text-sm font-medium uppercase text-gray-500 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500"
+                          aria-label={`View posts tagged ${t}`}
+                        >
+                          {`${t} (${tagCounts[t]})`}
+                        </Link>
+                      )}
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+          </div>
           <div>
-            <div className="mb-8">
-              <h2 className="text-xl font-bold uppercase tracking-widest text-primary-500">
-                Top categories
-              </h2>
-            </div>
             <ul>
-              {sortedTags.slice(0, 7).map((t) => {
+              {displayPosts.map((post) => {
+                const { path, date, title, summary, tags } = post
                 return (
-                  <li key={t} className="my-3 inline-block">
-                    <Link
-                      href={`/tags/${slug(t)}`}
-                      className="mr-2 rounded-lg bg-gray-200 px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600"
-                      aria-label={`View posts tagged ${t}`}
-                    >
-                      {`${t}`}
-                    </Link>
+                  <li key={path} className="py-5">
+                    <article className="flex flex-col space-y-2 xl:space-y-0">
+                      <dl>
+                        <dt className="sr-only">Published on</dt>
+                        <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                          <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
+                        </dd>
+                      </dl>
+                      <div className="space-y-3">
+                        <div>
+                          <h2 className="text-2xl font-bold leading-8 tracking-tight">
+                            <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
+                              {title}
+                            </Link>
+                          </h2>
+                          <div className="flex flex-wrap">
+                            {tags?.map((tag) => <Tag key={tag} text={tag} />)}
+                          </div>
+                        </div>
+                        <div className="prose max-w-none text-gray-500 dark:text-gray-400">
+                          {summary}
+                        </div>
+                      </div>
+                    </article>
                   </li>
                 )
               })}
             </ul>
+            {pagination && pagination.totalPages > 1 && (
+              <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
+            )}
           </div>
-          <div className="sticky top-0">
-            <div className="mb-8 mt-20">
-              <h2 className="text-xl font-bold uppercase tracking-widest text-primary-500">
-                Popular articles
-              </h2>
-            </div>
-            <ul>
-              {posts.slice(0, 8).map((p) => {
-                return (
-                  <li key={p.title} className="my-3">
-                    <Link
-                      href={`/tags/${slug(p.slug)}`}
-                      className="text-lg font-medium text-gray-900 dark:text-gray-100"
-                      aria-label={`View post titled ${p.title}`}
-                    >
-                      {`${p.title}`}
-                    </Link>
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
-        </section>
+        </div>
       </div>
     </>
   )
