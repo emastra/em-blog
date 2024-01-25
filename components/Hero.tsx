@@ -3,8 +3,8 @@ const Hero = () => {
     <>
       {/* <div className="my-6 flex flex-col items-center gap-x-12 xl:mb-12 xl:flex-row"> */}
 
-      <div className="mb-16 max-w-xl">
-        <h1 className="mb-6 text-4xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:leading-10 md:text-5xl md:leading-14">
+      <div className="mb-16 max-w-lg">
+        <h1 className="mb-4 text-4xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:leading-10 md:text-5xl md:leading-14">
           Hi, it's Emiliano!
         </h1>
         <h2 className="text-lg text-gray-600 dark:text-gray-300">
