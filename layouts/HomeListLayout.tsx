@@ -38,98 +38,91 @@ export default function HomeListLayout({
   const displayPosts = initialDisplayPosts.length > 0 ? initialDisplayPosts : posts
 
   return (
-    <>
-      <div className="flex space-x-12 md:space-x-20 xl:space-x-24">
-        <section className="max-w-2xl">
-          <div className="mb-9">
+    <div className="grid grid-cols-6 gap-8">
+      <section className="col-span-6 md:col-span-4 md:mr-8 lg:mr-12">
+        <div className="mb-9">
+          <h2 className="text-xl font-bold uppercase tracking-widest text-primary-500">
+            Last published
+          </h2>
+        </div>
+        <ul>
+          {displayPosts.map((post) => {
+            const { path, date, title, summary, tags } = post
+            return (
+              <li key={path} className="py-5 first:pt-0">
+                <article className="flex flex-col space-y-2 xl:space-y-0">
+                  <dl>
+                    <dt className="sr-only">Published on</dt>
+                    <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                      <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
+                    </dd>
+                  </dl>
+                  <div className="space-y-3">
+                    <div>
+                      <h3 className="text-2xl font-bold leading-8 tracking-tight">
+                        <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
+                          {title}
+                        </Link>
+                      </h3>
+                    </div>
+                    <div className="prose max-w-none text-gray-500 dark:text-gray-400">
+                      {summary}
+                    </div>
+                  </div>
+                </article>
+              </li>
+            )
+          })}
+        </ul>
+      </section>
+
+      <div className="col-span-6 md:col-span-2 lg:ml-4">
+        <section>
+          <div className="mb-8">
             <h2 className="text-xl font-bold uppercase tracking-widest text-primary-500">
-              Last published
+              Top categories
             </h2>
           </div>
           <ul>
-            {displayPosts.map((post) => {
-              const { path, date, title, summary, tags } = post
+            {sortedTags.slice(0, 7).map((t) => {
               return (
-                <li key={path} className="py-5">
-                  <article className="flex flex-col space-y-2 xl:space-y-0">
-                    <dl>
-                      <dt className="sr-only">Published on</dt>
-                      <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                        <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
-                      </dd>
-                    </dl>
-                    <div className="space-y-3">
-                      <div>
-                        <h3 className="text-2xl font-bold leading-8 tracking-tight">
-                          <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
-                            {title}
-                          </Link>
-                        </h3>
-                        {/* <div className="flex flex-wrap">
-                            {tags?.map((tag) => <Tag key={tag} text={tag} />)}
-                          </div> */}
-                      </div>
-                      <div className="prose max-w-none text-gray-500 dark:text-gray-400">
-                        {summary}
-                      </div>
-                    </div>
-                  </article>
+                <li key={t} className="my-[10px] inline-block">
+                  <Link
+                    href={`/tags/${slug(t)}`}
+                    className="mr-2 rounded-lg bg-gray-200 px-[10px] py-[7px] text-sm font-medium text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600"
+                    aria-label={`View posts tagged ${t}`}
+                  >
+                    {`${t}`}
+                  </Link>
                 </li>
               )
             })}
           </ul>
-          {/* {pagination && pagination.totalPages > 1 && (
-              <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
-            )} */}
         </section>
-
-        <section className="hidden h-full min-w-[310px] max-w-[310px] flex-wrap items-start overflow-auto sm:flex xl:min-w-[345px] xl:max-w-[345px]">
-          <div>
-            <div className="mb-8">
-              <h2 className="text-xl font-bold uppercase tracking-widest text-primary-500">
-                Top categories
-              </h2>
-            </div>
-            <ul>
-              {sortedTags.slice(0, 7).map((t) => {
-                return (
-                  <li key={t} className="my-3 inline-block">
-                    <Link
-                      href={`/tags/${slug(t)}`}
-                      className="mr-2 rounded-lg bg-gray-200 px-3 py-1.5 text-sm font-medium text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600"
-                      aria-label={`View posts tagged ${t}`}
-                    >
-                      {`${t}`}
-                    </Link>
-                  </li>
-                )
-              })}
-            </ul>
+        <section className="sticky top-8">
+          <div className="mb-8 mt-20">
+            <h2 className="text-xl font-bold uppercase tracking-widest text-primary-500">
+              Popular articles
+            </h2>
           </div>
-          <div className="sticky top-0">
-            <div className="mb-8 mt-20">
-              <h2 className="text-xl font-bold uppercase tracking-widest text-primary-500">
-                Popular articles
-              </h2>
-            </div>
-            <ul>
-              {posts.slice(0, 8).map((p) => {
-                return (
-                  <li key={p.title} className="my-3">
-                    <Link
-                      href={`/tags/${slug(p.slug)}`}
-                      className="text-lg font-medium text-gray-900 dark:text-gray-100"
-                      aria-label={`View post titled ${p.title}`}
-                    >
-                      {`${p.title}`}
-                    </Link>
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
+          <ul>
+            {posts.slice(0, 8).map((p) => {
+              return (
+                <li key={p.title} className="my-3">
+                  <Link
+                    href={`/tags/${slug(p.slug)}`}
+                    className="text-lg font-medium text-gray-900 dark:text-gray-100"
+                    aria-label={`View post titled ${p.title}`}
+                  >
+                    {`${p.title}`}
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
         </section>
       </div>
-    </>
+      <div className="h-[900px]">test</div>
+    </div>
   )
 }
