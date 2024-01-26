@@ -101,7 +101,7 @@ export default function HomeListLayout({
               })}
             </ul>
           </section>
-          <section className="sticky top-8">
+          <section className="sticky top-[108px]">
             <div className="mb-8 mt-20">
               <h2 className="text-xl font-bold uppercase tracking-widest text-primary-500">
                 Popular articles
