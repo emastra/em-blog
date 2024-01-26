@@ -5,7 +5,8 @@ interface Props {
 }
 
 // !
-// Used only in LayoutWrapper, PostBanner, PostLayout, PostSimple components. Which are not used.
+// Used only in PostLayout.
+// Also in LayoutWrapper, PostBanner, PostSimple components, but they are not used.
 // For main use, I created MainContainer component.
 
 export default function SectionContainer({ children }: Props) {
