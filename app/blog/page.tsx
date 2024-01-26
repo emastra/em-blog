@@ -1,6 +1,7 @@
 import HomeListLayout from '@/layouts/HomeListLayout'
 // import ListLayout2 from '@/layouts/ListLayout'
 import Hero from '@/components/Hero'
+import MainContainer from '@/components/MainContainer'
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
 import { allBlogs } from 'contentlayer/generated'
 import { genPageMetadata } from 'app/seo'
@@ -24,12 +25,14 @@ export default function BlogPage() {
   return (
     <>
       <Hero />
-      <HomeListLayout
-        posts={posts}
-        initialDisplayPosts={initialDisplayPosts}
-        pagination={pagination}
-        title="All Posts"
-      />
+      <MainContainer>
+        <HomeListLayout
+          posts={posts}
+          initialDisplayPosts={initialDisplayPosts}
+          pagination={pagination}
+          title="All Posts"
+        />
+      </MainContainer>
     </>
   )
 }
