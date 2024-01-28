@@ -6,11 +6,18 @@ import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
 import SearchButton from './SearchButton'
 import MainContainer from './MainContainer'
+import { usePathname } from 'next/navigation'
 
 const Header = () => {
+  // const pathname = usePathname()
+  // console.log('pathname', pathname)
+  // if / add div block on top of the header. change the sticky top-0, mesa de no
+  // solo se client component !!
+
   return (
     <div className="sticky top-0 z-40 bg-white dark:bg-gray-950">
       <MainContainer>
+        {/* pb-5 pt-3 */}
         <header className="flex items-center justify-between py-4">
           <div>
             <Link href="/" aria-label={siteMetadata.headerTitle}>
