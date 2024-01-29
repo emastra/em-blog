@@ -11,7 +11,7 @@ import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import tagData from 'app/tag-data.json'
-import BlogNewsletterForm from 'pliny/ui/BlogNewsletterForm'
+import NewsletterForm from 'pliny/ui/NewsletterForm'
 
 interface PaginationProps {
   totalPages: number
@@ -138,9 +138,11 @@ export default function HomeListLayout({
           <br />
           <br /> No spam, unsubscribe at any time.
         </p>
-        <div className="ml-[-10px] mt-8">
-          <BlogNewsletterForm />
-        </div>
+        {siteMetadata.newsletter?.provider && (
+          <div className="pt-8">
+            <NewsletterForm title="Iscriviti alla newsletter" />
+          </div>
+        )}
       </div>
     </>
   )
