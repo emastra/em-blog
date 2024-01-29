@@ -127,7 +127,7 @@ export default function HomeListLayout({
         </div>
         {/* <div className="h-[900px]">test</div> */}
       </div>
-      <div className="mt-16 max-w-lg">
+      <div className="mt-24 max-w-lg">
         <h2 className="mb-4 text-3xl font-extrabold leading-10 tracking-tight text-gray-900 dark:text-gray-100 md:text-4xl md:leading-12">
           A front-end web development newsletter that sparks joy
         </h2>
