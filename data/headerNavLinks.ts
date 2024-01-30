@@ -1,8 +1,15 @@
+// const headerNavLinks = [
+//   { href: '/', title: 'Home' },
+//   { href: '/blog', title: 'Blog' },
+//   { href: '/tags', title: 'Tags' },
+//   { href: '/projects', title: 'Projects' },
+//   { href: '/about', title: 'About' },
+// ]
+
 const headerNavLinks = [
   { href: '/', title: 'Home' },
-  { href: '/blog', title: 'Blog' },
-  { href: '/tags', title: 'Tags' },
-  { href: '/projects', title: 'Projects' },
+  { href: '/articles', title: 'Articoli' },
+  { href: '/categories', title: 'Categorie' },
   { href: '/about', title: 'About' },
 ]
 
