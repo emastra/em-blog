@@ -1,3 +1,5 @@
+// NOT USED ANYMORE. it's all in articles/page.tsx
+
 import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
