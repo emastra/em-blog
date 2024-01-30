@@ -38,6 +38,7 @@ export default function TagPage({ params }: { params: { cat: string } }) {
   const filteredPosts = allCoreContent(
     sortPosts(allBlogs.filter((post) => post.tags && post.tags.map((t) => slug(t)).includes(tag)))
   )
+
   return (
     <MainContainer>
       <ListLayout posts={filteredPosts} title={title} />
