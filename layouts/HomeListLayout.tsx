@@ -91,7 +91,7 @@ export default function HomeListLayout({
                 return (
                   <li key={t} className="my-[10px] inline-block">
                     <Link
-                      href={`/tags/${slug(t)}`}
+                      href={`/categories/${slug(t)}`}
                       className="mr-2 rounded-lg bg-gray-200 px-[10px] py-[7px] text-sm font-medium text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600"
                       aria-label={`View posts tagged ${t}`}
                     >

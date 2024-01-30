@@ -90,23 +90,24 @@ export default function ListLayoutWithTags({
                 <h3 className="font-bold uppercase text-primary-500">All Posts</h3>
               ) : (
                 <Link
-                  href={`/blog`}
+                  href={`/articles5`}
                   className="font-bold uppercase text-gray-700 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500"
                 >
-                  All Posts
+                  Tutti gli articoli
                 </Link>
               )}
               <ul>
                 {sortedTags.map((t) => {
                   return (
                     <li key={t} className="my-3">
+                      {/* TODO: check this ternary. why? when is this needed? */}
                       {pathname.split('/tags/')[1] === slug(t) ? (
                         <h3 className="inline px-3 py-2 text-sm font-bold uppercase text-primary-500">
                           {`${t} (${tagCounts[t]})`}
                         </h3>
                       ) : (
                         <Link
-                          href={`/tags/${slug(t)}`}
+                          href={`/categories/${slug(t)}`}
                           className="px-3 py-2 text-sm font-medium uppercase text-gray-500 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500"
                           aria-label={`View posts tagged ${t}`}
                         >
