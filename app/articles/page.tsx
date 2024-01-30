@@ -13,6 +13,8 @@ export const metadata = genPageMetadata({ title: 'Blog' })
 export default function ArticlesPage() {
   const posts = allCoreContent(sortPosts(allBlogs))
   const pageNumber = 1
+  // TODO:
+  // Check quale data viene visualiizata. Published or Modified? Decidi come visualizzare date.
   const initialDisplayPosts = posts.slice(
     POSTS_PER_PAGE * (pageNumber - 1),
     POSTS_PER_PAGE * pageNumber
@@ -25,12 +27,14 @@ export default function ArticlesPage() {
   return (
     <>
       <MainContainer>
-        <ListLayout
-          posts={posts}
-          initialDisplayPosts={initialDisplayPosts}
-          pagination={pagination}
-          title="All Posts"
-        />
+        <div className="mt-16">
+          <ListLayout
+            posts={posts}
+            initialDisplayPosts={initialDisplayPosts}
+            pagination={pagination}
+            title="Tutti gli articoli"
+          />
+        </div>
       </MainContainer>
     </>
   )
