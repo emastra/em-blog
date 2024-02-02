@@ -78,6 +78,9 @@ export default function Footer() {
                 <Link href="/" className="mb-2 block">
                   Privacy
                 </Link>
+                <Link href="/" className="mb-2 block">
+                  RSS feed
+                </Link>
               </div>
             </div>
           </div>
