@@ -7,7 +7,7 @@ const Hero = () => {
       <div className="mb-12 bg-gradient-to-t from-slate-200 to-white to-90% pb-16 pt-32 dark:from-slate-900 dark:to-gray-950">
         <MainContainer>
           <div className="max-w-lg">
-            <h1 className="mb-4 text-4xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:leading-10 md:text-5xl md:leading-14">
+            <h1 className="mb-4 text-5xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:leading-10 md:text-6xl md:leading-14">
               Hi, it's Emiliano!
             </h1>
             <h2 className="text-lg text-gray-600 dark:text-gray-200">
