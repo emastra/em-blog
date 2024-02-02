@@ -53,7 +53,7 @@ export default async function Page() {
               return (
                 <Link
                   href={`/categories/${slug(t)}`}
-                  className="dark:boder-gray-700 col-span-4 flex min-h-64 items-center justify-center rounded-md border border-gray-200 md:col-span-2"
+                  className="col-span-4 flex min-h-64 items-center justify-center rounded-lg bg-slate-300 hover:bg-slate-400 dark:bg-slate-800 dark:hover:bg-slate-700 md:col-span-2"
                 >
                   <div className="text-2xl md:text-3xl">{t}</div>
                 </Link>
