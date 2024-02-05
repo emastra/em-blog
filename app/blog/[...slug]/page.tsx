@@ -106,7 +106,6 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
     }
   })
 
-  console.log('!!', post.layout, defaultLayout)
   const Layout = layouts[post.layout || defaultLayout]
 
   return (

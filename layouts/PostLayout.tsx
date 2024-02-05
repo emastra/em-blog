@@ -11,9 +11,9 @@ import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 import MainContainer from '@/components/MainContainer'
 
-const editUrl = (path) => `${siteMetadata.siteRepo}/blob/main/data/${path}`
+const editUrl = (path) => `${siteMetadata.siteRepo}/blob/main/data/${path}` // non serve?
 const discussUrl = (path) =>
-  `https://mobile.twitter.com/search?q=${encodeURIComponent(`${siteMetadata.siteUrl}/${path}`)}`
+  `https://mobile.twitter.com/search?q=${encodeURIComponent(`${siteMetadata.siteUrl}/${path}`)}` // non serve?
 
 const postDateTemplate: Intl.DateTimeFormatOptions = {
   weekday: 'long',
@@ -40,6 +40,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
         <ScrollTopAndComment />
         <article>
           <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
+            {/* header with title */}
             <header className="mt-8 pt-6 xl:pb-6">
               <div className="space-y-1">
                 <dl className="space-y-10">
@@ -57,7 +58,9 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                 </div>
               </div>
             </header>
+            {/* tutto il resto sulla sinistra + children */}
             <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8 dark:divide-gray-700 xl:grid xl:grid-cols-4 xl:gap-x-6 xl:divide-y-0">
+              {/* 1 authors */}
               <dl className="pb-10 pt-6 xl:border-b xl:border-gray-200 xl:pt-11 xl:dark:border-gray-700">
                 <dt className="sr-only">Authors</dt>
                 <dd>
@@ -93,8 +96,11 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                   </ul>
                 </dd>
               </dl>
+              {/* testo e sotto test */}
               <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
+                {/* children */}
                 <div className="prose max-w-none pb-8 pt-10 dark:prose-invert">{children}</div>
+                {/* sotto al testo */}
                 <div className="pb-6 pt-6 text-sm text-gray-700 dark:text-gray-300">
                   <Link href={discussUrl(path)} rel="nofollow">
                     Discuss on Twitter
@@ -111,7 +117,9 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                   </div>
                 )}
               </div>
+              {/* continua ora il box a sinistra */}
               <footer>
+                {/* 2 tags */}
                 <div className="divide-gray-200 text-sm font-medium leading-5 dark:divide-gray-700 xl:col-start-1 xl:row-start-2 xl:divide-y">
                   {tags && (
                     <div className="py-4 xl:py-8">
@@ -125,6 +133,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                       </div>
                     </div>
                   )}
+                  {/* 3 prev e next articles */}
                   {(next || prev) && (
                     <div className="flex justify-between py-4 xl:block xl:space-y-8 xl:py-8">
                       {prev && prev.path && (
@@ -150,6 +159,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                     </div>
                   )}
                 </div>
+                {/* 4 back to blog */}
                 <div className="pt-4 xl:pt-8">
                   <Link
                     href={`/${basePath}`}
