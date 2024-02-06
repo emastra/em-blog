@@ -11,7 +11,8 @@ import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 
 import MainContainer from '@/components/MainContainer'
-import TOCInline from 'pliny/ui/TOCInline'
+// import TOCInline from 'pliny/ui/TOCInline'
+import TableOfContents from '@/components/toc/TableOfContents'
 import ArticleHeader from '@/components/ArticleHeader'
 
 const postDateTemplate: Intl.DateTimeFormatOptions = {
@@ -71,7 +72,7 @@ export default function PostLayout({
             <div className="grid grid-cols-6 gap-8">
               <div className="col-span-6 md:order-last md:col-span-2 md:ml-12 lg:ml-16">
                 <div className="sticky top-[164px]">
-                  <TOCInline toc={toc} />
+                  <TableOfContents toc={toc} />
                 </div>
               </div>
 
