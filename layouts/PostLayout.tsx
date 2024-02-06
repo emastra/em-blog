@@ -12,6 +12,7 @@ import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 
 import MainContainer from '@/components/MainContainer'
 import TOCInline from 'pliny/ui/TOCInline'
+import ArticleHeader from '@/components/ArticleHeader'
 
 const postDateTemplate: Intl.DateTimeFormatOptions = {
   weekday: 'long',
@@ -42,13 +43,14 @@ export default function PostLayout({
 
   return (
     <>
+      <ArticleHeader title={title} />
       <MainContainer>
         <ScrollTopAndComment />
 
         <article>
-          <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
+          <div className="">
             {/* header with title */}
-            <header className="mt-8 pt-6 xl:pb-6">
+            {/* <header className="mt-8 pt-6 xl:pb-6">
               <div className="space-y-1">
                 <dl className="space-y-10">
                   <div>
@@ -64,14 +66,14 @@ export default function PostLayout({
                   <PageTitle>{title}</PageTitle>
                 </div>
               </div>
-            </header>
+            </header> */}
 
             <div className="grid grid-cols-6 gap-8">
               <div className="col-span-6 md:order-last md:col-span-2 md:ml-12 lg:ml-16">
                 <TOCInline toc={toc} />
               </div>
               <div className="col-span-6 md:col-span-4 md:mr-4">
-                <div className="prose max-w-none pb-8 pt-10 dark:prose-invert">{children}</div>
+                <div className="prose max-w-none pb-8 dark:prose-invert">{children}</div>
               </div>
             </div>
           </div>
