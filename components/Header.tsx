@@ -17,7 +17,7 @@ const Header = () => {
   return (
     <div className="sticky top-0 z-40 bg-white dark:bg-gray-950">
       <MainContainer>
-        {/* pb-5 pt-3 */}
+        {/* pb-5 pt-4 */}
         <header className="flex items-center justify-between py-4">
           <div>
             <Link href="/" aria-label={siteMetadata.headerTitle}>
