@@ -70,8 +70,11 @@ export default function PostLayout({
 
             <div className="grid grid-cols-6 gap-8">
               <div className="col-span-6 md:order-last md:col-span-2 md:ml-12 lg:ml-16">
-                <TOCInline toc={toc} />
+                <div className="sticky top-[164px]">
+                  <TOCInline toc={toc} />
+                </div>
               </div>
+
               <div className="col-span-6 md:col-span-4 md:mr-4">
                 <div className="prose max-w-none pb-8 dark:prose-invert">{children}</div>
               </div>
