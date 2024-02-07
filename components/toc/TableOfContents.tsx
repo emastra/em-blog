@@ -1,4 +1,7 @@
+'use client'
+
 import { Toc, TocItem } from './remark-toc-headings'
+import { useEffect } from 'react'
 
 export interface TOCInlineProps {
   toc: Toc
@@ -87,7 +90,9 @@ const TOCInline = ({
       <ul className={ulClassName}>
         {items.map((item, index) => (
           <li key={index} className={`mt-${3 - n * 2} text-[${15 - n}px]`}>
-            <a href={item.url}>{item.value}</a>
+            <a href={item.url} className="content-anchor">
+              {item.value}
+            </a>
             <div className="ml-4">{createList(item.children, 1)}</div>
           </li>
         ))}
@@ -96,6 +101,49 @@ const TOCInline = ({
   }
 
   const nestedList = createNestedList(filteredToc)
+
+  // https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#interfaces
+  // https://web.dev/articles/intersectionobserver
+  useEffect(() => {
+    const observerOptions = {
+      root: null, // document.querySelector('#scrollArea'),
+      rootMargin: '0px',
+      threshold: 1.0,
+    }
+
+    const observerCallBack = (entries) => {
+      console.log('entries', entries)
+
+      // entries.forEach((entry) => {
+      //   const { target } = entry
+
+      //   if (entry.isIntersecting) {
+      //     console.log('!!!', entry)
+      //     document.querySelectorAll('.content-anchor').forEach((title) => {
+      //       console.log('remove from', title)
+      //       title.classList.remove('text-primary-500')
+      //     })
+
+      //     // target.classList.add('text-primary-500')
+      //     const fragment = target.attributes['href'].nodeValue
+      //     console.log('fragment', fragment)
+      //     const el = document.querySelector('a[href="' + fragment + '"]')
+      //     console.log('el', el)
+      //     el?.classList.add('text-primary-500')
+      //   }
+      // })
+    }
+
+    const observer = new IntersectionObserver(observerCallBack, observerOptions)
+    document.querySelectorAll('h2, h3').forEach((title) => {
+      console.log('title', title)
+      observer.observe(title)
+    })
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
 
   return (
     <>
