@@ -78,7 +78,7 @@ const TOCInline = ({
       heading.depth >= fromHeading && heading.depth <= toHeading && !re.test(heading.value)
   )
 
-  const createList = (items: NestedTocItem[] | undefined) => {
+  const createList = (items: NestedTocItem[] | undefined, n: number = 0) => {
     if (!items || items.length === 0) {
       return null
     }
@@ -86,9 +86,9 @@ const TOCInline = ({
     return (
       <ul className={ulClassName}>
         {items.map((item, index) => (
-          <li key={index}>
+          <li key={index} className={`mt-${3 - n * 2} text-[${15 - n}px]`}>
             <a href={item.url}>{item.value}</a>
-            {createList(item.children)}
+            <div className="ml-4">{createList(item.children, 1)}</div>
           </li>
         ))}
       </ul>
@@ -101,11 +101,16 @@ const TOCInline = ({
     <>
       {asDisclosure ? (
         <details open={!collapse}>
-          <summary className="ml-6 pb-2 pt-2 text-xl font-bold">Table of Contents</summary>
+          <summary className="ml-6 pb-2 pt-2 text-lg font-bold">Table of Contents</summary>
           <div className="ml-6">{createList(nestedList)}</div>
         </details>
       ) : (
-        createList(nestedList)
+        <section>
+          <div className="mb-4 text-lg font-medium uppercase tracking-widest">
+            Table of contents
+          </div>
+          {createList(nestedList)}
+        </section>
       )}
     </>
   )
