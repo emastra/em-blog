@@ -2,6 +2,7 @@
 
 import { Toc, TocItem } from './remark-toc-headings'
 import { useEffect } from 'react'
+import '@/components/toc/styles.css'
 
 export interface TOCInlineProps {
   toc: Toc
