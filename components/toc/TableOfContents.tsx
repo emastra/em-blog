@@ -107,6 +107,7 @@ const TOCInline = ({
   // https://web.dev/articles/intersectionobserver !
   //// https://www.smashingmagazine.com/2018/01/deferring-lazy-loading-intersection-observer-api/
   //// https://blog.webdevsimplified.com/2022-01/intersection-observer/
+  // TODO: puo non servire per mobile qunado la TOC non è di lato ma all'inizio dell'articolo !!
   useEffect(() => {
     const observerOptions = {
       root: null,
