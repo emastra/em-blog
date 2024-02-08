@@ -102,36 +102,41 @@ const TOCInline = ({
 
   const nestedList = createNestedList(filteredToc)
 
-  // https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#interfaces
-  // https://web.dev/articles/intersectionobserver
+  // https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+  // https://web.dev/articles/intersectionobserver !
+  //// https://www.smashingmagazine.com/2018/01/deferring-lazy-loading-intersection-observer-api/
+  //// https://blog.webdevsimplified.com/2022-01/intersection-observer/
   useEffect(() => {
     const observerOptions = {
-      root: null, // document.querySelector('#scrollArea'),
-      rootMargin: '0px',
+      root: null,
+      rootMargin: '-40% 0px -50% 0px',
       threshold: 1.0,
     }
 
     const observerCallBack = (entries) => {
       console.log('entries', entries)
 
-      // entries.forEach((entry) => {
-      //   const { target } = entry
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return
 
-      //   if (entry.isIntersecting) {
-      //     console.log('!!!', entry)
-      //     document.querySelectorAll('.content-anchor').forEach((title) => {
-      //       console.log('remove from', title)
-      //       title.classList.remove('text-primary-500')
-      //     })
+        const { target } = entry
 
-      //     // target.classList.add('text-primary-500')
-      //     const fragment = target.attributes['href'].nodeValue
-      //     console.log('fragment', fragment)
-      //     const el = document.querySelector('a[href="' + fragment + '"]')
-      //     console.log('el', el)
-      //     el?.classList.add('text-primary-500')
-      //   }
-      // })
+        if (entry.isIntersecting) {
+          document.querySelectorAll('.content-anchor.text-primary-500').forEach((title) => {
+            title.classList.remove('text-primary-500')
+          })
+
+          // const fragment = target.attributes['href'].nodeValue
+          // console.log('fragment', fragment)
+          // const el = document.querySelector('a[href="' + fragment + '"]')
+          // console.log('el', el)
+          // el?.classList.add('text-primary-500')
+
+          const el = document.querySelector('a[href="#' + target.id + '"]')
+          console.log('el', el)
+          el?.classList.add('text-primary-500')
+        }
+      })
     }
 
     const observer = new IntersectionObserver(observerCallBack, observerOptions)
