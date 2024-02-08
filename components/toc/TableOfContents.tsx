@@ -110,7 +110,7 @@ const TOCInline = ({
   useEffect(() => {
     const observerOptions = {
       root: null,
-      rootMargin: '-40% 0px -50% 0px',
+      rootMargin: '-10% 0px -60% 0px',
       threshold: 1.0,
     }
 
