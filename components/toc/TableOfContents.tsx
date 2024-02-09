@@ -91,7 +91,7 @@ const TOCInline = ({
       <ul className={ulClassName}>
         {items.map((item, index) => (
           <li key={index} className={`mt-${3 - n * 2} text-[${15 - n}px]`}>
-            <a href={item.url} className="content-anchor">
+            <a href={item.url} className="content-anchor transition-colors">
               {item.value}
             </a>
             <div className="ml-4">{createList(item.children, 1)}</div>
