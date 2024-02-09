@@ -15,6 +15,7 @@ const space_grotesk = Space_Grotesk({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-space-grotesk',
+  preload: true, // added to fix https://github.com/vercel/next.js/discussions/49607
 })
 
 export const metadata: Metadata = {
