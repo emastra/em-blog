@@ -167,7 +167,7 @@ export default function ListLayout({
                       <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
                     </dd>
                   </dl>
-                  <div className="mt-1">
+                  <div className="">
                     <div>
                       <h3 className="text-2xl font-bold leading-8 tracking-tight">
                         <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">

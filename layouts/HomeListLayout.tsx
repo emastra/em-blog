@@ -52,7 +52,7 @@ export default function HomeListLayout({
             {displayPosts.map((post) => {
               const { path, date, title, summary, tags } = post
               return (
-                <li key={path} className="group my-10 first:mt-0">
+                <li key={path} className="group my-12 first:mt-0">
                   <article className="flex flex-col">
                     <dl>
                       <dt className="sr-only">Published on</dt>
@@ -60,7 +60,7 @@ export default function HomeListLayout({
                         <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
                       </dd>
                     </dl>
-                    <div className="mt-1">
+                    <div className="">
                       <div>
                         <h3 className="text-2xl font-bold leading-8 tracking-tight">
                           <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
