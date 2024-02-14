@@ -5,15 +5,13 @@ lastmod: '2021-02-01'
 tags: ['next-js', 'tailwind', 'guide']
 draft: false
 summary: 'An overview of the new features released in v1 - code block copy, multiple authors, frontmatter layout and more'
-layout: PostSimple
+layout: PostLayout
 bibliography: references-data.bib
 ---
 
 ## Overview
 
 A post on the new features introduced in v1.0. New features:
-
-<TOCInline toc={props.toc} exclude="Overview" toHeading={2} />
 
 First load JS decreased from 43kB to 39kB despite all the new features added! [^1]
 
@@ -81,7 +79,7 @@ To make generating a table of contents (TOC) simple, you can use the existing `T
 For example, the TOC in this post was generated with the following code:
 
 ```jsx
-<TOCInline toc={props.toc} exclude="Overview" toHeading={2} />
+Test
 ```
 
 You can customise the headings that are displayed by configuring the `fromHeading` and `toHeading` props, or exclude particular headings
@@ -91,10 +89,10 @@ A `asDisclosure` prop can be used to render the TOC within an expandable disclos
 Here's the full TOC rendered in a disclosure element.
 
 ```jsx
-<TOCInline toc={props.toc} asDisclosure />
+test
 ```
 
-<TOCInline toc={props.toc} asDisclosure />
+test
 
 ## Layouts
 

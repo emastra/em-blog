@@ -14,7 +14,7 @@ export default function Page() {
   return (
     <>
       <MainContainer>
-        <div className="mt-16">
+        <div className="mb-8 mt-16">
           <AuthorLayout content={mainContent}>
             <MDXLayoutRenderer code={author.body.code} />
           </AuthorLayout>
