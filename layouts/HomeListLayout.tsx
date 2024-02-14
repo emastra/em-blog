@@ -53,14 +53,14 @@ export default function HomeListLayout({
               const { path, date, title, summary, tags } = post
               return (
                 <li key={path} className="py-5 first:pt-0">
-                  <article className="flex flex-col space-y-2 xl:space-y-0">
+                  <article className="flex flex-col">
                     <dl>
                       <dt className="sr-only">Published on</dt>
                       <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
                         <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
                       </dd>
                     </dl>
-                    <div className="space-y-3">
+                    <div className="mt-1">
                       <div>
                         <h3 className="text-2xl font-bold leading-8 tracking-tight">
                           <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
@@ -73,9 +73,18 @@ export default function HomeListLayout({
                           <Tag key={tag} text={tag} />
                         ))}
                       </div> */}
-                      <div className="prose max-w-none text-gray-500 dark:text-gray-400">
+                      <div className="prose mt-3 max-w-none text-gray-800 dark:text-gray-200">
                         {summary}
                       </div>
+                    </div>
+                    <div className="mt-3 text-base font-medium leading-6">
+                      <Link
+                        href={`/${path}`}
+                        className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                        aria-label={`Read more: "${title}"`}
+                      >
+                        Read more &rarr;
+                      </Link>
                     </div>
                   </article>
                 </li>
