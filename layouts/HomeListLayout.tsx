@@ -52,7 +52,7 @@ export default function HomeListLayout({
             {displayPosts.map((post) => {
               const { path, date, title, summary, tags } = post
               return (
-                <li key={path} className="group py-5 first:pt-0">
+                <li key={path} className="group my-10 first:mt-0">
                   <article className="flex flex-col">
                     <dl>
                       <dt className="sr-only">Published on</dt>
