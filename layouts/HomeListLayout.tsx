@@ -52,7 +52,7 @@ export default function HomeListLayout({
             {displayPosts.map((post) => {
               const { path, date, title, summary, tags } = post
               return (
-                <li key={path} className="py-5 first:pt-0">
+                <li key={path} className="group py-5 first:pt-0">
                   <article className="flex flex-col">
                     <dl>
                       <dt className="sr-only">Published on</dt>
@@ -80,7 +80,7 @@ export default function HomeListLayout({
                     <div className="mt-3 text-base font-medium leading-6">
                       <Link
                         href={`/${path}`}
-                        className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                        className="text-gray-900 group-hover:text-primary-600 dark:text-gray-100"
                         aria-label={`Read more: "${title}"`}
                       >
                         Read more &rarr;
