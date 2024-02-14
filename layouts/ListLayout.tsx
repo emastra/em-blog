@@ -80,7 +80,7 @@ export default function ListLayout({
 
   return (
     <>
-      <div className="divide-y divide-gray-200 dark:divide-gray-700">
+      <div className="max-w-2xl">
         <div className="mb-8 space-y-2 pb-8 pt-6 md:space-y-5">
           <h1 className="text-5xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:leading-10 md:text-6xl md:leading-14">
             {title}
@@ -115,15 +115,15 @@ export default function ListLayout({
             </div>
           )} */}
         </div>
-        <ul className="divide-y divide-gray-200 dark:divide-gray-700">
+        <ul className="">
           {!filteredBlogPosts.length && 'No posts found.'}
           {displayPosts.map((post) => {
             const { path, date, title, summary, tags } = post
             return (
-              <li key={path} className="py-12">
-                <article>
+              <li key={path} className="group my-12">
+                {/* <article>
                   <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
-                    {/* <div>image</div> */}
+                    <div>image</div>
                     <dl>
                       <dt className="sr-only">Published on</dt>
                       <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
@@ -158,6 +158,40 @@ export default function ListLayout({
                         </Link>
                       </div>
                     </div>
+                  </div>
+                </article> */}
+                <article className="flex flex-col">
+                  <dl>
+                    <dt className="sr-only">Published on</dt>
+                    <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                      <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
+                    </dd>
+                  </dl>
+                  <div className="mt-1">
+                    <div>
+                      <h3 className="text-2xl font-bold leading-8 tracking-tight">
+                        <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
+                          {title}
+                        </Link>
+                      </h3>
+                    </div>
+                    {/* <div className="flex flex-wrap">
+                        {tags.map((tag) => (
+                          <Tag key={tag} text={tag} />
+                        ))}
+                      </div> */}
+                    <div className="prose mt-3 max-w-none text-gray-800 dark:text-gray-200">
+                      {summary}
+                    </div>
+                  </div>
+                  <div className="mt-3 text-base font-medium leading-6">
+                    <Link
+                      href={`/${path}`}
+                      className="text-gray-900 group-hover:text-primary-600 dark:text-gray-100"
+                      aria-label={`Read more: "${title}"`}
+                    >
+                      Read more &rarr;
+                    </Link>
                   </div>
                 </article>
               </li>
