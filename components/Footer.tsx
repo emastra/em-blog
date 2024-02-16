@@ -6,7 +6,8 @@ import Logo from '@/data/logo.svg'
 
 export default function Footer() {
   return (
-    <footer className="mt-24 bg-gradient-to-b from-slate-200 to-white to-90% dark:from-slate-900 dark:to-gray-950">
+    // border-t border-slate-200 dark:border-slate-900
+    <footer className="mt-24 bg-slate-200 dark:bg-slate-900">
       <MainContainer>
         <div className="py-16">
           <div className="flex justify-between">
@@ -36,9 +37,9 @@ export default function Footer() {
                 <Link href="/" className="mb-2 block">
                   Guidance
                 </Link>
-                <Link href="/" className="mb-2 block">
+                {/* <Link href="/" className="mb-2 block">
                   Computer Basics
-                </Link>
+                </Link> */}
                 <Link href="/" className="mb-2 block">
                   Html
                 </Link>
@@ -51,9 +52,9 @@ export default function Footer() {
                 <Link href="/" className="mb-2 block">
                   Linux
                 </Link>
-                <Link href="/" className="mb-2 block">
+                {/* <Link href="/" className="mb-2 block">
                   Networks
-                </Link>
+                </Link> */}
                 <Link href="/" className="mb-2 block">
                   Web
                 </Link>
