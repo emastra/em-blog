@@ -4,7 +4,7 @@ const Hero = () => {
   return (
     <>
       {/* mt-[-76px] */}
-      <div className="mb-24 bg-gradient-to-t from-slate-200 to-white to-90% pb-16 pt-32 dark:from-slate-900 dark:to-gray-950">
+      <div className="mb-24 bg-gradient-to-t from-slate-200 to-transparent to-90% pb-16 pt-32 dark:from-slate-900">
         <MainContainer>
           <div className="max-w-lg">
             <h1 className="mb-4 text-5xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:leading-10 md:text-6xl md:leading-14">
