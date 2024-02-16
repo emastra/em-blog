@@ -50,17 +50,15 @@ export default function PostLayout({
       <MainContainer>
         <ScrollTopAndComment />
         <article>
-          <div className="">
-            <div className="grid grid-cols-6 gap-4">
-              <div className="col-span-6 mt-1 md:order-last md:col-span-2 md:ml-16 lg:ml-20">
-                <div className="sticky top-[164px]">
-                  {/* TODO: responsiveness: asDisclosure */}
-                  <TableOfContents toc={toc} />
-                </div>
+          <div className="grid grid-cols-6 gap-4">
+            <div className="col-span-6 mt-1 md:order-last md:col-span-2 md:ml-16 lg:ml-20">
+              <div className="sticky top-[164px]">
+                {/* TODO: responsiveness: asDisclosure */}
+                <TableOfContents toc={toc} />
               </div>
-              <div className="col-span-6 md:col-span-4 md:mr-4">
-                <div className="prose max-w-none pb-8 dark:prose-invert">{children}</div>
-              </div>
+            </div>
+            <div className="col-span-6 md:col-span-4 md:mr-4">
+              <div className="prose max-w-none pb-8 dark:prose-invert">{children}</div>
             </div>
           </div>
           <div className="mt-4">
