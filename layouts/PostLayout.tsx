@@ -9,6 +9,7 @@ import Image from '@/components/Image'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
+import { formatDate } from 'pliny/utils/formatDate'
 
 import MainContainer from '@/components/MainContainer'
 // import TOCInline from 'pliny/ui/TOCInline'
@@ -61,6 +62,16 @@ export default function PostLayout({
                 <div className="prose max-w-none pb-8 dark:prose-invert">{children}</div>
               </div>
             </div>
+          </div>
+          <div className="mt-4">
+            <dl>
+              <dt className="text-sm font-medium uppercase text-gray-500 dark:text-gray-400">
+                Ultimo aggiornamento
+              </dt>
+              <dd className="text-xl font-bold text-gray-800 dark:text-gray-300">
+                <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
+              </dd>
+            </dl>
           </div>
         </article>
         <NewsletterBox />
