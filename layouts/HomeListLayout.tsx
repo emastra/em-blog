@@ -54,24 +54,24 @@ export default function HomeListLayout({
               return (
                 <li key={path} className="group my-12 first:mt-0">
                   <article className="flex flex-col">
-                    <dl>
+                    {/* <dl>
                       <dt className="sr-only">Published on</dt>
                       <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
                         <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
                       </dd>
-                    </dl>
+                    </dl> */}
                     {/* <div className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
                       {['node-js'].map((cat) => (
                         <span className="">{cat}</span>
                       ))}
                     </div> */}
-                    {/* <div className="mb-2 ml-[-8px]">
+                    <div className="mb-4 ml-[-4px]">
                       {['orientamento'].map((cat) => (
                         <span className="mr-2 rounded-lg bg-gray-200 px-[10px] py-[7px] text-sm font-medium text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600">
                           {cat}
                         </span>
                       ))}
-                    </div> */}
+                    </div>
                     <div className="">
                       <div>
                         <h3 className="text-2xl font-bold leading-8 tracking-tight">
@@ -92,9 +92,9 @@ export default function HomeListLayout({
                           </span>
                         ))}
                       </div> */}
-                      {/* <div className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                        <div>Lorem ipsum lorem ipsum ya ya ya</div>
-                      </div> */}
+                      <div className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                        <div>Lorem ipsum lorem ipsum ya ya ya lorem ipsum</div>
+                      </div>
                       <div className="prose mt-3 max-w-none text-gray-800 dark:text-gray-200">
                         {summary}
                       </div>
