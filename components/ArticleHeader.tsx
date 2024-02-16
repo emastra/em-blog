@@ -4,7 +4,7 @@ import PageTitle from '@/components/PageTitle'
 const ArticleHeader = ({ title }) => {
   return (
     <>
-      <div className="mb-24 bg-gradient-to-t from-slate-200 to-white to-90% pb-16 pt-32 dark:from-slate-900 dark:to-gray-950">
+      <div className="mb-24 bg-gradient-to-t from-slate-200 to-transparent to-90% pb-16 pt-32 dark:from-slate-900">
         <MainContainer>
           {/* <div className=" mb-4 text-lg font-medium leading-6 text-gray-500 dark:text-gray-400">
             {'Home > Articoli > Categoria'}
