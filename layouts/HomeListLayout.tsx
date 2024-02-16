@@ -92,6 +92,9 @@ export default function HomeListLayout({
                           </span>
                         ))}
                       </div> */}
+                      {/* <div className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                        <div>Lorem ipsum lorem ipsum ya ya ya</div>
+                      </div> */}
                       <div className="prose mt-3 max-w-none text-gray-800 dark:text-gray-200">
                         {summary}
                       </div>
