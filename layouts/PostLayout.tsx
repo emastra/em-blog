@@ -14,6 +14,7 @@ import MainContainer from '@/components/MainContainer'
 // import TOCInline from 'pliny/ui/TOCInline'
 import TableOfContents from '@/components/toc/TableOfContents'
 import ArticleHeader from '@/components/ArticleHeader'
+import NewsletterBox from '@/components/NewsletterBox'
 
 const postDateTemplate: Intl.DateTimeFormatOptions = {
   weekday: 'long',
@@ -62,6 +63,7 @@ export default function PostLayout({
             </div>
           </div>
         </article>
+        <NewsletterBox />
       </MainContainer>
     </>
   )

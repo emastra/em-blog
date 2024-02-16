@@ -1,3 +1,4 @@
+'use client'
 // Taken from 'pliny/ui/NewsletterForm' at https://github.com/timlrx/pliny/blob/main/packages/pliny/src/ui/NewsletterForm.tsx
 
 import React, { useRef, useState } from 'react'
