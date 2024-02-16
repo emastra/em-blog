@@ -11,7 +11,7 @@ import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import tagData from 'app/tag-data.json'
-import NewsletterForm from 'pliny/ui/NewsletterForm'
+import NewsletterForm from '@/components/NewsletterForm'
 
 interface PaginationProps {
   totalPages: number
