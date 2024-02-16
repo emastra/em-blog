@@ -5,7 +5,7 @@ const NewsletterBox = () => {
   return (
     <div className="mt-24 border-2 border-dashed border-slate-500 bg-gradient-to-bl from-slate-100 to-transparent to-90% p-8 dark:from-slate-900 sm:p-16">
       {/* TODO: ml-auto mr-auto  */}
-      <div className="ml-auto  mr-auto max-w-xl">
+      <div className="max-w-xl">
         <h2 className="mb-4 text-3xl font-extrabold leading-10 tracking-tight text-gray-900 dark:text-gray-100 md:text-4xl md:leading-12">
           A front-end web development newsletter that sparks joy
         </h2>
