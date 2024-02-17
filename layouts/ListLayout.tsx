@@ -120,7 +120,7 @@ export default function ListLayout({
           {displayPosts.map((post) => {
             const { path, date, title, summary, tags } = post
             return (
-              <li key={path} className="group my-12">
+              <li key={path} className="group my-12 first:mt-0">
                 {/* <article>
                   <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
                     <div>image</div>
