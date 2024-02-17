@@ -68,12 +68,13 @@ export default function HomeListLayout({
                     </div> */}
                     <div className="mb-4 ml-[-4px]">
                       {['javascript'].map((cat) => (
-                        <span
-                          key={cat}
-                          className="mr-2 rounded-lg bg-gray-200 px-3 py-[6px] text-sm font-medium text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600"
-                        >
-                          {cat}
-                        </span>
+                        // <span
+                        //   key={cat}
+                        //   className="mr-2 rounded-lg bg-gray-200 px-3 py-[6px] text-sm font-medium text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600"
+                        // >
+                        //   {cat}
+                        // </span>
+                        <Tag key={cat} text={cat} />
                       ))}
                     </div>
                     <div className="">
@@ -130,13 +131,14 @@ export default function HomeListLayout({
               {sortedTags.slice(0, 7).map((t) => {
                 return (
                   <li key={t} className="my-[10px] inline-block">
-                    <Link
+                    {/* <Link
                       href={`/categories/${slug(t)}`}
                       className="mr-2 rounded-lg bg-gray-200 px-3 py-[6px] text-sm font-medium text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600"
                       aria-label={`View posts tagged ${t}`}
                     >
                       {`${t}`}
-                    </Link>
+                    </Link> */}
+                    <Tag key={t} text={t} />
                   </li>
                 )
               })}
