@@ -70,7 +70,7 @@ export default function HomeListLayout({
                       {['javascript'].map((cat) => (
                         <span
                           key={cat}
-                          className="mr-2 rounded-lg bg-gray-200 px-[10px] py-[7px] text-sm font-medium text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600"
+                          className="mr-2 rounded-lg bg-gray-200 px-3 py-[6px] text-sm font-medium text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600"
                         >
                           {cat}
                         </span>
@@ -132,7 +132,7 @@ export default function HomeListLayout({
                   <li key={t} className="my-[10px] inline-block">
                     <Link
                       href={`/categories/${slug(t)}`}
-                      className="mr-2 rounded-lg bg-gray-200 px-[10px] py-[7px] text-sm font-medium text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600"
+                      className="mr-2 rounded-lg bg-gray-200 px-3 py-[6px] text-sm font-medium text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600"
                       aria-label={`View posts tagged ${t}`}
                     >
                       {`${t}`}
