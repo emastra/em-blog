@@ -60,6 +60,7 @@ function createTagCount(allBlogs) {
     }
   })
   writeFileSync('./app/tag-data.json', JSON.stringify(tagCount))
+  console.log('Local tag count generated...')
 }
 
 function createSearchIndex(allBlogs) {
