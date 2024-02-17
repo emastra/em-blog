@@ -67,8 +67,11 @@ export default function HomeListLayout({
                       ))}
                     </div> */}
                     <div className="mb-4 ml-[-4px]">
-                      {['orientamento'].map((cat) => (
-                        <span className="mr-2 rounded-lg bg-gray-200 px-[10px] py-[7px] text-sm font-medium text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600">
+                      {['javascript'].map((cat) => (
+                        <span
+                          key={cat}
+                          className="mr-2 rounded-lg bg-gray-200 px-[10px] py-[7px] text-sm font-medium text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600"
+                        >
                           {cat}
                         </span>
                       ))}
@@ -148,7 +151,7 @@ export default function HomeListLayout({
             <ul>
               {posts.slice(0, 8).map((p) => {
                 return (
-                  <li key={p.title} className="my-3">
+                  <li key={p.slug} className="my-3">
                     <Link
                       href={`/tags/${slug(p.slug)}`}
                       className="text-lg font-medium text-gray-900 dark:text-gray-100"
