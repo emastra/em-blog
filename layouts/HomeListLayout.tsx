@@ -52,7 +52,7 @@ export default function HomeListLayout({
           </div>
           <ul>
             {displayPosts.map((post) => {
-              const { path, date, title, summary, tags } = post
+              const { path, date, title, summary, category } = post
               return (
                 <li key={path} className="group my-12 first:mt-0">
                   <article className="flex flex-col">
@@ -68,7 +68,7 @@ export default function HomeListLayout({
                       ))}
                     </div> */}
                     <div className="mb-4 ml-[-4px]">
-                      {/* TODO: check here */}
+                      {/* TODO: check here. DEVO USARE category estratto su. ma non ho l'href!! */}
                       {[{ name: 'javascript', href: '/categories/javascript' }].map((cat) => (
                         <Tag key={slug(cat.name)} text={cat.name} href={cat.href} />
                       ))}
