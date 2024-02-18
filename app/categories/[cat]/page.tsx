@@ -34,9 +34,8 @@ export const generateStaticParams = async () => {
   return paths
 }
 
-// TODO: work here (categories!!) // work on post FRONTMATTER data !! DONE?
-// TODO: controlla bene se devo usare slug in giro per l'app, e se nome, capitalization, sluggization è consistente in giro. E SE la cat sono piu parole !!
-export default function TagPage({ params }: { params: { cat: string } }) {
+// TODO: DONE?: controlla bene se devo usare slug in giro per l'app, e se nome, capitalization, sluggization è consistente in giro. E SE la cat sono piu parole !!
+export default function CategoryPage({ params }: { params: { cat: string } }) {
   const cat = decodeURI(params.cat)
   // Capitalize first letter and convert space to dash
   // const title = cat.toUpperCase() + cat.split(' ').join('-').slice(1)
