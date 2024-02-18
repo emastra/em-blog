@@ -10,7 +10,8 @@ import type { Blog } from 'contentlayer/generated'
 import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 // import siteMetadata from '@/data/siteMetadata'
-import tagData from 'app/tag-data.json'
+// import tagData from 'app/tag-data.json'
+import categoriesData, { popularCategories } from '@/data/categoriesData'
 // import NewsletterForm from '@/components/NewsletterForm'
 import NewsletterBox from '@/components/NewsletterBox'
 
@@ -34,9 +35,9 @@ export default function HomeListLayout({
   const pathname = usePathname()
   console.log('pathname', pathname, pathname.startsWith('/blog'))
 
-  const tagCounts = tagData as Record<string, number>
-  const tagKeys = Object.keys(tagCounts)
-  const sortedTags = tagKeys.sort((a, b) => tagCounts[b] - tagCounts[a])
+  // const tagCounts = tagData as Record<string, number>
+  // const tagKeys = Object.keys(tagCounts)
+  // const sortedTags = tagKeys.sort((a, b) => tagCounts[b] - tagCounts[a])
 
   const displayPosts = initialDisplayPosts.length > 0 ? initialDisplayPosts : posts
 
@@ -67,14 +68,9 @@ export default function HomeListLayout({
                       ))}
                     </div> */}
                     <div className="mb-4 ml-[-4px]">
-                      {['javascript'].map((cat) => (
-                        // <span
-                        //   key={cat}
-                        //   className="mr-2 rounded-lg bg-gray-200 px-3 py-[6px] text-sm font-medium text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600"
-                        // >
-                        //   {cat}
-                        // </span>
-                        <Tag key={cat} text={cat} />
+                      {/* TODO: check here */}
+                      {[{ name: 'javascript', href: '/categories/javascript' }].map((cat) => (
+                        <Tag key={slug(cat.name)} text={cat.name} href={cat.href} />
                       ))}
                     </div>
                     <div className="">
@@ -128,20 +124,22 @@ export default function HomeListLayout({
               </h2>
             </div>
             <ul>
-              {sortedTags.slice(0, 7).map((t) => {
-                return (
-                  <li key={t} className="my-[10px] inline-block">
-                    {/* <Link
+              {categoriesData
+                .filter((cat) => popularCategories.includes(cat.name))
+                .map((cat) => {
+                  return (
+                    <li key={cat.name} className="my-[10px] inline-block">
+                      {/* <Link
                       href={`/categories/${slug(t)}`}
                       className="mr-2 rounded-lg bg-gray-200 px-3 py-[6px] text-sm font-medium text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600"
                       aria-label={`View posts tagged ${t}`}
                     >
                       {`${t}`}
                     </Link> */}
-                    <Tag key={t} text={t} />
-                  </li>
-                )
-              })}
+                      <Tag key={slug(cat.name)} text={cat.name} href={cat.href} />
+                    </li>
+                  )
+                })}
             </ul>
           </section>
           <section className="sticky top-[108px]">

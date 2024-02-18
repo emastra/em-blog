@@ -9,6 +9,7 @@ import { genPageMetadata } from 'app/seo'
 import { Metadata } from 'next'
 import MainContainer from '@/components/MainContainer'
 
+// TODO: check !!! no tags but categories
 export async function generateMetadata({ params }: { params: { tag: string } }): Promise<Metadata> {
   const tag = decodeURI(params.tag)
   return genPageMetadata({
@@ -23,6 +24,7 @@ export async function generateMetadata({ params }: { params: { tag: string } }):
   })
 }
 
+// TODO: check
 export const generateStaticParams = async () => {
   const tagCounts = tagData as Record<string, number>
   const tagKeys = Object.keys(tagCounts)
@@ -32,6 +34,7 @@ export const generateStaticParams = async () => {
   return paths
 }
 
+// TODO: work here (categories!!) // work on post FRONTMATTER data !!
 export default function TagPage({ params }: { params: { cat: string } }) {
   const tag = decodeURI(params.cat)
   // Capitalize first letter and convert space to dash

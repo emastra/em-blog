@@ -5,13 +5,15 @@ import tagData from 'app/tag-data.json'
 import { genPageMetadata } from 'app/seo'
 import MainContainer from '@/components/MainContainer'
 import Link from 'next/link'
+import categoriesData from '@/data/categoriesData'
 
-export const metadata = genPageMetadata({ title: 'Tags', description: 'Things I blog about' }) // !! check
+export const metadata = genPageMetadata({ title: 'Categories', description: 'Things I blog about' }) // !! check: il title era Tags
 
 export default async function Page() {
-  const tagCounts = tagData as Record<string, number>
-  const tagKeys = Object.keys(tagCounts)
-  const sortedTags = tagKeys.sort((a, b) => tagCounts[b] - tagCounts[a])
+  // const tagCounts = tagData as Record<string, number>
+  // const tagKeys = Object.keys(tagCounts)
+  // const sortedTags = tagKeys.sort((a, b) => tagCounts[b] - tagCounts[a])
+
   return (
     <>
       <MainContainer>
@@ -22,15 +24,19 @@ export default async function Page() {
             </h1>
           </div>
           <div className="grid grid-cols-4 gap-8">
-            {tagKeys.length === 0 && 'No categories found.'}
-            {sortedTags.map((t) => {
+            {categoriesData.length === 0 && 'No categories found.'}
+            {categoriesData.map((cat) => {
               return (
                 <Link
-                  key={t}
-                  href={`/categories/${slug(t)}`}
-                  className="col-span-4 flex min-h-64 items-center justify-center rounded-lg bg-slate-300 hover:bg-slate-400 dark:bg-slate-800 dark:hover:bg-slate-700 md:col-span-2"
+                  key={cat.name}
+                  // `/categories/${slug(t)}`
+                  href={cat.href}
+                  className="col-span-4 flex min-h-64 flex-col items-center justify-center rounded-lg bg-slate-300 hover:bg-slate-400 dark:bg-slate-800 dark:hover:bg-slate-700 md:col-span-2"
                 >
-                  <div className="text-2xl md:text-3xl">{t}</div>
+                  <div className="text-3xl md:text-4xl">{cat.name}</div>
+                  {cat.description && (
+                    <div className="mt-2 text-gray-300 md:text-lg">{cat.description}</div>
+                  )}
                 </Link>
               )
             })}

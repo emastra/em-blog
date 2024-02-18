@@ -5,13 +5,21 @@ interface Category {
   imgSrc?: string
 }
 
+// const CATEGORY_NAMES = []
+
+// TODO: add position? to sort them before display them
 const categoriesData: Category[] = [
-  { href: '', name: 'Orientamento', description: '' },
-  { href: '', name: 'Html', description: '' },
-  { href: '', name: 'Css', description: '' },
-  { href: '', name: 'Javascript', description: '' },
-  { href: '', name: 'Linux', description: '' },
-  { href: '', name: 'Web', description: '' },
+  {
+    href: '/categories/orientamento',
+    name: 'Orientamento',
+    description: 'Lorem ipsum lorem ipsum lorem',
+  },
+  { href: '/categories/html', name: 'Html', description: 'Lorem ipsum lorem ipsum lorem' },
+  { href: '/categories/css', name: 'Css', description: '' },
+  { href: '/categories/javascript', name: 'Javascript', description: '' },
+  { href: '/categories/linux', name: 'Linux', description: 'Lorem ipsum lorem ipsum lorem' },
+  { href: '/categories/web', name: 'Web', description: 'Lorem ipsum lorem ipsum lorem' },
 ]
 
 export default categoriesData
+export const popularCategories = ['Orientamento', 'Html', 'Css', 'Javascript', 'Linux']
