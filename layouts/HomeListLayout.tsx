@@ -68,10 +68,7 @@ export default function HomeListLayout({
                       ))}
                     </div> */}
                     <div className="mb-4 ml-[-4px]">
-                      {/* TODO: check here. DEVO USARE category estratto su. ma non ho l'href!! */}
-                      {[{ name: 'javascript', href: '/categories/javascript' }].map((cat) => (
-                        <Tag key={slug(cat.name)} text={cat.name} href={cat.href} />
-                      ))}
+                      <Tag name={category} />
                     </div>
                     <div className="">
                       <div>
@@ -128,15 +125,8 @@ export default function HomeListLayout({
                 .filter((cat) => popularCategories.includes(cat.name))
                 .map((cat) => {
                   return (
-                    <li key={cat.name} className="my-[10px] inline-block">
-                      {/* <Link
-                      href={`/categories/${slug(t)}`}
-                      className="mr-2 rounded-lg bg-gray-200 px-3 py-[6px] text-sm font-medium text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600"
-                      aria-label={`View posts tagged ${t}`}
-                    >
-                      {`${t}`}
-                    </Link> */}
-                      <Tag key={slug(cat.name)} text={cat.name} href={cat.href} />
+                    <li key={slug(cat.name)} className="my-[10px] inline-block">
+                      <Tag name={cat.name} />
                     </li>
                   )
                 })}

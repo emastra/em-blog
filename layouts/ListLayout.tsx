@@ -66,11 +66,11 @@ export default function ListLayout({
   title,
   initialDisplayPosts = [],
   pagination,
-  hasSearch = true,
+  hasSearch = false,
 }: ListLayoutProps) {
   const [searchValue, setSearchValue] = useState('')
   const filteredBlogPosts = posts.filter((post) => {
-    const searchContent = post.title + post.summary + post.tags?.join(' ')
+    const searchContent = post.title + post.summary + post.category
     return searchContent.toLowerCase().includes(searchValue.toLowerCase())
   })
 
@@ -118,7 +118,7 @@ export default function ListLayout({
         <ul className="">
           {!filteredBlogPosts.length && 'No posts found.'}
           {displayPosts.map((post) => {
-            const { path, date, title, summary, tags } = post
+            const { path, date, title, summary, category } = post
             return (
               <li key={path} className="group my-12 first:mt-0">
                 {/* <article>
@@ -168,11 +168,7 @@ export default function ListLayout({
                     </dd>
                   </dl> */}
                   <div className="mb-4 ml-[-4px]">
-                    {['orientamento'].map((cat) => (
-                      <span className="mr-2 rounded-lg bg-gray-200 px-[10px] py-[7px] text-sm font-medium text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600">
-                        {cat}
-                      </span>
-                    ))}
+                    <Tag name={category} />
                   </div>
                   <div className="">
                     <div>

@@ -1,20 +1,18 @@
 import Link from 'next/link'
 import { slug } from 'github-slugger'
 interface Props {
-  text: string
-  href: string
+  name: string
 }
 
-const Tag = ({ text, href }: Props) => {
+const Tag = ({ name }: Props) => {
   return (
     // transform transition duration-100 hover:scale-125
-    // href={`/categories/${slug(text)}`}
     <Link
-      href={href}
+      href={`/categories/${slug(name)}`}
       className="mr-2 rounded-lg bg-gray-200 px-3 py-[6px] text-sm font-medium text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600"
-      aria-label={`View posts with category ${text}`}
+      aria-label={`View posts with category ${name}`}
     >
-      {text.split(' ').join('-')}
+      {name.split(' ').join('-')}
     </Link>
   )
 }

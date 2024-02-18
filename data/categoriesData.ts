@@ -1,13 +1,14 @@
+import { slug } from 'github-slugger'
+
+type CategoryName = 'Orientamento' | 'Html' | 'Css' | 'Javascript' | 'Linux' | 'Web'
+
 interface Category {
   href: string
-  name: string
+  name: CategoryName
   description?: string
   imgSrc?: string
 }
 
-// const CATEGORY_NAMES = []
-
-// TODO: add position? to sort them before display them
 const categoriesData: Category[] = [
   {
     href: '/categories/orientamento',
@@ -23,3 +24,4 @@ const categoriesData: Category[] = [
 
 export default categoriesData
 export const popularCategories = ['Orientamento', 'Html', 'Css', 'Javascript', 'Linux']
+export const getCategoryHref = (categoryName: string) => '/categories/' + slug(categoryName)

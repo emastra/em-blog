@@ -28,9 +28,8 @@ export default async function Page() {
             {categoriesData.map((cat) => {
               return (
                 <Link
-                  key={cat.name}
-                  // `/categories/${slug(t)}`
-                  href={cat.href}
+                  key={slug(cat.name)}
+                  href={`/categories/${slug(cat.name)}`} // TODO: consider having a getCategoryHref utils function
                   className="col-span-4 flex min-h-64 flex-col items-center justify-center rounded-lg bg-slate-300 hover:bg-slate-400 dark:bg-slate-800 dark:hover:bg-slate-700 md:col-span-2"
                 >
                   <div className="text-3xl md:text-4xl">{cat.name}</div>
