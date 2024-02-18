@@ -8,7 +8,8 @@ import { formatDate } from 'pliny/utils/formatDate'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Blog } from 'contentlayer/generated'
 import Link from '@/components/Link'
-import Tag from '@/components/Tag'
+// import Tag from '@/components/Tag'
+import CategoryLabel from '@/components/CategoryLabel'
 // import siteMetadata from '@/data/siteMetadata'
 // import tagData from 'app/tag-data.json'
 import categoriesData, { CategoryName } from '@/data/categoriesData'
@@ -63,7 +64,7 @@ export default function HomeListLayout({
                       ))}
                     </div> */}
                     <div className="mb-4 ml-[-4px]">
-                      <Tag name={category} />
+                      <CategoryLabel name={category} />
                     </div>
                     <div className="">
                       <div>
@@ -121,7 +122,7 @@ export default function HomeListLayout({
                 .map((cat) => {
                   return (
                     <li key={slug(cat.name)} className="my-[10px] inline-block">
-                      <Tag name={cat.name} />
+                      <CategoryLabel name={cat.name} />
                     </li>
                   )
                 })}

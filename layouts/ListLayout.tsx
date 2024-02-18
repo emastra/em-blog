@@ -6,7 +6,8 @@ import { formatDate } from 'pliny/utils/formatDate'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Blog } from 'contentlayer/generated'
 import Link from '@/components/Link'
-import Tag from '@/components/Tag'
+// import Tag from '@/components/Tag'
+import CategoryLabel from '@/components/CategoryLabel'
 import siteMetadata from '@/data/siteMetadata'
 
 interface PaginationProps {
@@ -168,7 +169,7 @@ export default function ListLayout({
                     </dd>
                   </dl> */}
                   <div className="mb-4 ml-[-4px]">
-                    <Tag name={category} />
+                    <CategoryLabel name={category} />
                   </div>
                   <div className="">
                     <div>
