@@ -33,13 +33,7 @@ export default function HomeListLayout({
   initialDisplayPosts = [],
   pagination,
 }: ListLayoutProps) {
-  const pathname = usePathname()
-  console.log('pathname', pathname, pathname.startsWith('/blog'))
-
-  // const tagCounts = tagData as Record<string, number>
-  // const tagKeys = Object.keys(tagCounts)
-  // const sortedTags = tagKeys.sort((a, b) => tagCounts[b] - tagCounts[a])
-
+  // const pathname = usePathname()
   const displayPosts = initialDisplayPosts.length > 0 ? initialDisplayPosts : posts
 
   return (
