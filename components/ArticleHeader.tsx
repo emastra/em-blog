@@ -1,7 +1,8 @@
 import MainContainer from './MainContainer'
 import PageTitle from '@/components/PageTitle'
+import CategoryLabel from './CategoryLabel'
 
-const ArticleHeader = ({ title }) => {
+const ArticleHeader = ({ title, category }) => {
   return (
     <>
       <div className="mb-24 bg-gradient-to-t from-slate-200 to-transparent to-90% pb-16 pt-32 dark:from-slate-900">
@@ -10,11 +11,7 @@ const ArticleHeader = ({ title }) => {
             {'Home > Articoli > Categoria'}
           </div> */}
           <div className="mb-10">
-            {['orientamento'].map((cat) => (
-              <span className="mr-2 rounded-lg bg-gray-200 px-[10px] py-[7px] text-sm font-medium text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600">
-                {cat}
-              </span>
-            ))}
+            <CategoryLabel name={category} size="lg" />
           </div>
           {/* prendi link da homelistlayout */}
           <div>

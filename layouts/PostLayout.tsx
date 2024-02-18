@@ -46,7 +46,7 @@ export default function PostLayout({
 
   return (
     <>
-      <ArticleHeader title={title} />
+      <ArticleHeader title={title} category={category} />
       <MainContainer>
         <ScrollTopAndComment />
         <article>

@@ -122,7 +122,7 @@ export default function HomeListLayout({
                 .map((cat) => {
                   return (
                     <li key={slug(cat.name)} className="my-[10px] inline-block">
-                      <CategoryLabel name={cat.name} />
+                      <CategoryLabel name={cat.name} size="md" />
                     </li>
                   )
                 })}
