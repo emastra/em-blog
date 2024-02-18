@@ -11,8 +11,7 @@ import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 // import siteMetadata from '@/data/siteMetadata'
 // import tagData from 'app/tag-data.json'
-import categoriesData, { popularCategories } from '@/data/categoriesData'
-// import NewsletterForm from '@/components/NewsletterForm'
+import categoriesData, { CategoryName } from '@/data/categoriesData'
 import NewsletterBox from '@/components/NewsletterBox'
 
 interface PaginationProps {
@@ -25,6 +24,8 @@ interface ListLayoutProps {
   initialDisplayPosts?: CoreContent<Blog>[]
   pagination?: PaginationProps
 }
+
+const POPULAR_CATEGORIES: CategoryName[] = ['Orientamento', 'HTML', 'CSS', 'Javascript', 'Linux']
 
 export default function HomeListLayout({
   posts,
@@ -122,7 +123,7 @@ export default function HomeListLayout({
             </div>
             <ul>
               {categoriesData
-                .filter((cat) => popularCategories.includes(cat.name))
+                .filter((cat) => POPULAR_CATEGORIES.includes(cat.name))
                 .map((cat) => {
                   return (
                     <li key={slug(cat.name)} className="my-[10px] inline-block">
