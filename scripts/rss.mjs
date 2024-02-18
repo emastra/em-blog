@@ -8,6 +8,7 @@ import { allBlogs } from '../.contentlayer/generated/index.mjs'
 import { sortPosts } from 'pliny/utils/contentlayer.js'
 
 // TODO: do smt here about tags VS categories (FRONTMATTER data)
+// TODO: dont use tags below
 
 const generateRssItem = (config, post) => `
   <item>
@@ -37,6 +38,7 @@ const generateRss = (config, posts, page = 'feed.xml') => `
   </rss>
 `
 
+// TODO: anche qui
 async function generateRSS(config, allBlogs, page = 'feed.xml') {
   const publishPosts = allBlogs.filter((post) => post.draft !== true)
   // RSS for blog post

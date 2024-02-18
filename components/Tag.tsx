@@ -1,3 +1,5 @@
+// TODO: NOT USED ANYMORE
+
 import Link from 'next/link'
 import { slug } from 'github-slugger'
 interface Props {

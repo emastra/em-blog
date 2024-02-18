@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: { tag: string } }):
     alternates: {
       canonical: './',
       types: {
-        'application/rss+xml': `${siteMetadata.siteUrl}/tags/${tag}/feed.xml`, // check!!!!!!!!!!! no tags/, /categories!!!
+        'application/rss+xml': `${siteMetadata.siteUrl}/tags/${tag}/feed.xml`, // TODO: no tags/, /categories!!!
       },
     },
   })

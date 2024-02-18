@@ -41,7 +41,7 @@ export default function PostLayout({
   toc,
   children,
 }: LayoutProps) {
-  const { filePath, path, slug, date, title, tags } = content
+  const { filePath, path, slug, date, title, category } = content
   const basePath = path.split('/')[0]
 
   return (
