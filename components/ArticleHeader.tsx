@@ -5,14 +5,14 @@ import CategoryLabel from './CategoryLabel'
 const ArticleHeader = ({ title, category }) => {
   return (
     <>
-      <div className="mb-24 bg-gradient-to-t from-slate-200 to-transparent to-90% pb-16 pt-32 dark:from-slate-900">
+      <div className="mb-24 bg-gradient-to-t from-slate-200 to-transparent to-90% pb-16 pt-24 dark:from-slate-900">
         <MainContainer>
-          {/* <div className=" mb-4 text-lg font-medium leading-6 text-gray-500 dark:text-gray-400">
+          <div className="mb-8 text-base leading-6 text-gray-500 dark:text-gray-400">
             {'Home > Articoli > Categoria'}
-          </div> */}
-          <div className="mb-10">
-            <CategoryLabel name={category} size="lg" />
           </div>
+          {/* <div className="mb-10">
+            <CategoryLabel name={category} size="lg" />
+          </div> */}
           {/* <div className="mb-10 mt-8 text-base text-gray-500 dark:text-gray-400">
             <div>{`Home > Articles > Javascript`}</div>
           </div> */}
@@ -20,7 +20,7 @@ const ArticleHeader = ({ title, category }) => {
           <div>
             <PageTitle>{title}</PageTitle>
           </div>
-          <div className="mt-2 text-lg font-medium leading-6 text-gray-500 dark:text-gray-400">
+          <div className="mt-4 text-lg font-medium leading-6 text-gray-500 dark:text-gray-400">
             <div>Lorem ipsum lorem ipsum ya ya ya</div>
           </div>
           {/* <div className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
