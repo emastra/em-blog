@@ -13,6 +13,9 @@ const ArticleHeader = ({ title, category }) => {
           <div className="mb-10">
             <CategoryLabel name={category} size="lg" />
           </div>
+          {/* <div className="mb-10 mt-8 text-base text-gray-500 dark:text-gray-400">
+            <div>{`Home > Articles > Javascript`}</div>
+          </div> */}
           {/* prendi link da homelistlayout */}
           <div>
             <PageTitle>{title}</PageTitle>
