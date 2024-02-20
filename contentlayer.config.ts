@@ -25,6 +25,30 @@ import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer.js'
 const root = process.cwd()
 const isProduction = process.env.NODE_ENV === 'production'
 
+/**
+Example of _raw inside .contentlayer/generated
+    "_raw": {
+      "sourceFilePath": "blog/release-of-tailwind-nextjs-starter-blog-v2.0.mdx",
+      "sourceFileName": "release-of-tailwind-nextjs-starter-blog-v2.0.mdx",
+      "sourceFileDir": "blog",
+      "contentType": "mdx",
+      "flattenedPath": "blog/release-of-tailwind-nextjs-starter-blog-v2.0"
+    },
+
+    In computedFields slug è soltanto lo slug, infatti la regex ```/^.+?(\/)/``` matches the word before the first slash, including the slash
+    FlattenedPath include la cartella in cui stanno gli articoli dentro la cartella contentDirPath (che trovi in makeSource)
+    FlattenedPath è usato per creare il path dell'articolo (e anche l'url in structuredData)
+
+    Quando volevo tenere la cartella data/blog per il contenuto degli articoli, ma volevo 'articles' nell'url, facevo così:
+     path: {
+      type: 'string',
+      resolve: (doc) => doc._raw.flattenedPath.replace(/^.+?(\/)/, 'articles/'),
+    },
+
+    Se modifico flattenedPath per creare il path, devo modificarlo anche nei schema.org structuredData in MakeSource. Potrei creare una fn:
+    const createUrlPathFromRawFlattenedPath = (flattenedPath) => flattenedPath.replace(/^.+?(\/)/, 'articles/')
+*/
+
 const computedFields: ComputedFields = {
   readingTime: { type: 'json', resolve: (doc) => readingTime(doc.body.raw) },
   slug: {
@@ -106,6 +130,7 @@ export const Blog = defineDocumentType(() => ({
         dateModified: doc.lastmod || doc.date,
         description: doc.summary,
         image: doc.images ? doc.images[0] : siteMetadata.socialBanner,
+        // WARNING: Se modifichi il path in confronto al _raw.flattenedPath, devi modificarlo anche qui
         url: `${siteMetadata.siteUrl}/${doc._raw.flattenedPath}`,
       }),
     },
