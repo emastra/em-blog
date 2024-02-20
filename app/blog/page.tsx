@@ -1,6 +1,6 @@
 // EX HOMEPAGE
 // TODO:  NOT USED ANYMORE
-// TODO: Dovrei fare il redirect alla homepage qui !!!!!!!!!!!!!!!
+// TODO: Dovrei fare il redirect alla homepage qui !!!!!!!!!!!!!!! oppure a /articles
 
 import { sortPosts, allCoreContent } from 'pliny/utils/contentlayer'
 import { allBlogs } from 'contentlayer/generated'
