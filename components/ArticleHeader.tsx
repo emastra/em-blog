@@ -1,15 +1,21 @@
 import MainContainer from './MainContainer'
 import PageTitle from '@/components/PageTitle'
 import CategoryLabel from './CategoryLabel'
+import { slug } from 'github-slugger'
+import Breadcrumb from './Breadcrumb'
 
 const ArticleHeader = ({ title, category }) => {
+  const crumbData = [
+    { title: 'Home', url: '/' },
+    { title: 'Articoli', url: '/articles' },
+    { title: category, url: `/categories/${slug(category)}` },
+  ]
+
   return (
     <>
       <div className="mb-24 bg-gradient-to-t from-slate-200 to-transparent to-90% pb-16 pt-24 dark:from-slate-900">
         <MainContainer>
-          <div className="mb-8 text-base leading-6 text-gray-500 dark:text-gray-400">
-            {'Home > Articoli > Categoria'}
-          </div>
+          <Breadcrumb crumbData={crumbData} />
           {/* <div className="mb-10">
             <CategoryLabel name={category} size="lg" />
           </div> */}
