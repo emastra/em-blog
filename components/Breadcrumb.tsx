@@ -1,3 +1,5 @@
+import { slug } from 'github-slugger'
+
 const CrumbDivider = () => {
   return (
     <svg
@@ -26,7 +28,10 @@ const Breadcrumb = ({ crumbData }) => {
     >
       <ol>
         {crumbData.map((c, index) => (
-          <li className="inline-block transition-colors hover:text-gray-900 hover:dark:text-gray-100">
+          <li
+            key={slug(c.title)}
+            className="inline-block transition-colors hover:text-gray-900 hover:dark:text-gray-100"
+          >
             <a href={c.url} aria-label={`Go to ${c.title}`}>
               {c.title}
             </a>
