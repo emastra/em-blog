@@ -24,14 +24,16 @@ export const metadata: Metadata = {
     default: siteMetadata.title,
     template: `%s | ${siteMetadata.title}`,
   },
+  // TODO: keep it concise and within a range of 150 to 160 characters
   description: siteMetadata.description,
   openGraph: {
     title: siteMetadata.title,
     description: siteMetadata.description,
+    // TODO: The canonical URL of the object that should be shared. In your case, it's set to './', which may need to be replaced with the actual URL.
     url: './',
     siteName: siteMetadata.title,
     images: [siteMetadata.socialBanner],
-    locale: 'en_US',
+    locale: 'it_IT',
     type: 'website',
   },
   alternates: {

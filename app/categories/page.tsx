@@ -7,7 +7,10 @@ import MainContainer from '@/components/MainContainer'
 import Link from 'next/link'
 import categoriesData from '@/data/categoriesData'
 
-export const metadata = genPageMetadata({ title: 'Categories', description: 'Things I blog about' }) // !! check: il title era Tags
+export const metadata = genPageMetadata({
+  title: 'Categories',
+  description: 'Categories of topics I blog about',
+})
 
 export default async function Page() {
   // const tagCounts = tagData as Record<string, number>

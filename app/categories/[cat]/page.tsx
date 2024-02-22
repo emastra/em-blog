@@ -9,16 +9,17 @@ import { genPageMetadata } from 'app/seo'
 import { Metadata } from 'next'
 import MainContainer from '@/components/MainContainer'
 
-// TODO: check !!! no tags but categories
-export async function generateMetadata({ params }: { params: { tag: string } }): Promise<Metadata> {
-  const tag = decodeURI(params.tag)
+// TODO: check !!! no tags but categories. DONE
+export async function generateMetadata({ params }: { params: { cat: string } }): Promise<Metadata> {
+  const category = decodeURI(params.cat)
+  console.log('@@@category', category)
   return genPageMetadata({
-    title: tag,
-    description: `${siteMetadata.title} ${tag} tagged content`,
+    title: category,
+    description: `${siteMetadata.title} content in the ${category} category`,
     alternates: {
       canonical: './',
       types: {
-        'application/rss+xml': `${siteMetadata.siteUrl}/tags/${tag}/feed.xml`, // TODO: no tags/, /categories!!!
+        'application/rss+xml': `${siteMetadata.siteUrl}/categories/${category}/feed.xml`, // TODO: no tags/, /categories!!!
       },
     },
   })
@@ -39,6 +40,7 @@ export default function CategoryPage({ params }: { params: { cat: string } }) {
   const cat = decodeURI(params.cat)
   // Capitalize first letter and convert space to dash
   // const title = cat.toUpperCase() + cat.split(' ').join('-').slice(1)
+  // Ho saltato cat.split(' ').join('-'), ma se la cat sono parole staccate???
   const title = cat.charAt(0).toUpperCase() + cat.slice(1) // TODO: qc da fare qui, guarda linea sopra !
   const filteredPosts = allCoreContent(
     sortPosts(allBlogs.filter((post) => post.category && slug(post.category) === cat))
