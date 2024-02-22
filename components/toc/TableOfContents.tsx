@@ -116,7 +116,7 @@ const TOCInline = ({
     }
 
     const observerCallBack = (entries) => {
-      console.log('entries', entries)
+      // console.log('entries', entries)
 
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return
@@ -135,7 +135,7 @@ const TOCInline = ({
           // el?.classList.add('text-primary-500')
 
           const el = document.querySelector('a[href="#' + target.id + '"]')
-          console.log('el', el)
+          // console.log('el', el)
           el?.classList.add('text-primary-500')
         }
       })
@@ -143,7 +143,7 @@ const TOCInline = ({
 
     const observer = new IntersectionObserver(observerCallBack, observerOptions)
     document.querySelectorAll('h2, h3').forEach((title) => {
-      console.log('title', title)
+      // console.log('title', title)
       observer.observe(title)
     })
 
