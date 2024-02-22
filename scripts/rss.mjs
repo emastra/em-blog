@@ -6,10 +6,9 @@ import siteMetadata from '../data/siteMetadata.js'
 import tagData from '../app/tag-data.json' assert { type: 'json' }
 import { allBlogs } from '../.contentlayer/generated/index.mjs'
 import { sortPosts } from 'pliny/utils/contentlayer.js'
+import categoriesData from '@/data/categoriesData.js'
 
-// TODO: do smt here about tags VS categories (FRONTMATTER data)
-// TODO: dont use tags below
-
+// se usassi post.tags che era un array: ${post.category && post.tags.map((t) => `<category>${t}</category>`).join('')}
 const generateRssItem = (config, post) => `
   <item>
     <guid>${config.siteUrl}/blog/${post.slug}</guid>
@@ -18,7 +17,7 @@ const generateRssItem = (config, post) => `
     ${post.summary && `<description>${escape(post.summary)}</description>`}
     <pubDate>${new Date(post.date).toUTCString()}</pubDate>
     <author>${config.email} (${config.author})</author>
-    ${post.tags && post.tags.map((t) => `<category>${t}</category>`).join('')}
+    ${post.category && `<category>${post.category}</category>`}
   </item>
 `
 
@@ -38,7 +37,6 @@ const generateRss = (config, posts, page = 'feed.xml') => `
   </rss>
 `
 
-// TODO: anche qui
 async function generateRSS(config, allBlogs, page = 'feed.xml') {
   const publishPosts = allBlogs.filter((post) => post.draft !== true)
   // RSS for blog post
@@ -47,13 +45,23 @@ async function generateRSS(config, allBlogs, page = 'feed.xml') {
     writeFileSync(`./public/${page}`, rss)
   }
 
+  // if (publishPosts.length > 0) {
+  //   for (const tag of Object.keys(tagData)) {
+  //     const filteredPosts = allBlogs.filter((post) =>
+  //       post.tags.map((t) => GithubSlugger.slug(t)).includes(tag)
+  //     )
+  //     const rss = generateRss(config, filteredPosts, `tags/${tag}/${page}`)
+  //     const rssPath = path.join('public', 'tags', tag)
+  //     mkdirSync(rssPath, { recursive: true })
+  //     writeFileSync(path.join(rssPath, page), rss)
+  //   }
+  // }
   if (publishPosts.length > 0) {
-    for (const tag of Object.keys(tagData)) {
-      const filteredPosts = allBlogs.filter((post) =>
-        post.tags.map((t) => GithubSlugger.slug(t)).includes(tag)
-      )
-      const rss = generateRss(config, filteredPosts, `tags/${tag}/${page}`)
-      const rssPath = path.join('public', 'tags', tag)
+    for (const c of categoriesData) {
+      // se post.category diventasse un array: post.tags.map((t) => GithubSlugger.slug(t)).includes(tag)
+      const filteredPosts = allBlogs.filter((post) => GithubSlugger.slug(post.category) === c.name)
+      const rss = generateRss(config, filteredPosts, `categories/${c.name}/${page}`)
+      const rssPath = path.join('public', 'categories', c.name)
       mkdirSync(rssPath, { recursive: true })
       writeFileSync(path.join(rssPath, page), rss)
     }
