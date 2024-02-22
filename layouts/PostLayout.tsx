@@ -24,12 +24,19 @@ const postDateTemplate: Intl.DateTimeFormatOptions = {
   day: 'numeric',
 }
 
+// definito la prima volta in app/blog/[...slug]/page.tsx
+type CrumbData = {
+  title: string
+  url: string
+}
+
 interface LayoutProps {
   content: CoreContent<Blog>
   authorDetails: CoreContent<Authors>[]
   next?: { path: string; title: string }
   prev?: { path: string; title: string }
   toc: any
+  crumb: CrumbData
   children: ReactNode
 }
 
@@ -39,6 +46,7 @@ export default function PostLayout({
   next,
   prev,
   toc,
+  crumb,
   children,
 }: LayoutProps) {
   const { filePath, path, slug, date, title, category } = content
@@ -46,7 +54,7 @@ export default function PostLayout({
 
   return (
     <>
-      <ArticleHeader title={title} category={category} />
+      <ArticleHeader title={title} crumb={crumb} />
       <MainContainer>
         <ScrollTopAndComment />
         <article>

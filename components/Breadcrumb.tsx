@@ -20,6 +20,8 @@ const CrumbDivider = () => {
 }
 
 const Breadcrumb = ({ crumbData }) => {
+  const crumb = crumbData.slice(0, -1)
+
   return (
     <nav
       aria-label="Breadcrumb"
@@ -27,7 +29,7 @@ const Breadcrumb = ({ crumbData }) => {
       className="mb-8 text-base leading-6 tracking-tight text-gray-500 dark:text-gray-400"
     >
       <ol>
-        {crumbData.map((c, index) => (
+        {crumb.map((c, index) => (
           <li
             key={slug(c.title)}
             className="inline-block transition-colors hover:text-gray-900 hover:dark:text-gray-100"
@@ -35,7 +37,7 @@ const Breadcrumb = ({ crumbData }) => {
             <a href={c.url} aria-label={`Go to ${c.title}`}>
               {c.title}
             </a>
-            {index < crumbData.length - 1 && <CrumbDivider />}
+            {index < crumb.length - 1 && <CrumbDivider />}
           </li>
         ))}
       </ol>

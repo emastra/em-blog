@@ -13,7 +13,12 @@ import PostBanner from '@/layouts/PostBanner'
 import { Metadata } from 'next'
 import siteMetadata from '@/data/siteMetadata'
 import { notFound } from 'next/navigation'
-import { slug as g_slug } from 'github-slugger'
+import GithubSlugger from 'github-slugger'
+
+type CrumbData = {
+  title: string
+  url: string
+}
 
 const defaultLayout = 'PostLayout' // PostBanner
 const layouts = {
@@ -99,6 +104,13 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
     return coreContent(authorResults as Authors)
   })
   const mainContent = coreContent(post)
+  const crumbData: CrumbData[] = [
+    { title: 'Home', url: '/' },
+    { title: 'Articoli', url: '/articles' },
+    { title: post.category, url: `/categories/${GithubSlugger.slug(post.category)}` },
+    { title: post.title, url: `/${post.path}` },
+  ]
+
   const jsonLd = post.structuredData
   jsonLd['category'] = post.category
   jsonLd['author'] = authorDetails.map((author) => {
@@ -107,13 +119,6 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
       name: author.name,
     }
   })
-
-  const crumbData = [
-    { title: 'Home', url: '/' },
-    { title: 'Articoli', url: '/articles' },
-    { title: post.category, url: `/categories/${g_slug(post.category)}` },
-  ]
-
   jsonLd['breadcrumbList'] = {
     '@type': 'BreadcrumbList',
     itemListElement: crumbData.map((item, index) => ({
@@ -138,6 +143,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
         next={next}
         prev={prev}
         toc={post.toc}
+        crumb={crumbData}
       >
         <MDXLayoutRenderer code={post.body.code} components={components} />
       </Layout>
