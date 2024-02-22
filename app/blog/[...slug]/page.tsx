@@ -13,6 +13,7 @@ import PostBanner from '@/layouts/PostBanner'
 import { Metadata } from 'next'
 import siteMetadata from '@/data/siteMetadata'
 import { notFound } from 'next/navigation'
+import { slug as g_slug } from 'github-slugger'
 
 const defaultLayout = 'PostLayout' // PostBanner
 const layouts = {
@@ -99,6 +100,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
   })
   const mainContent = coreContent(post)
   const jsonLd = post.structuredData
+  jsonLd['category'] = post.category
   jsonLd['author'] = authorDetails.map((author) => {
     return {
       '@type': 'Person',
@@ -106,8 +108,23 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
     }
   })
 
+  const crumbData = [
+    { title: 'Home', url: '/' },
+    { title: 'Articoli', url: '/articles' },
+    { title: post.category, url: `/categories/${g_slug(post.category)}` },
+  ]
+
+  jsonLd['breadcrumbList'] = {
+    '@type': 'BreadcrumbList',
+    itemListElement: crumbData.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.title,
+      item: `${siteMetadata.siteUrl}${item.url}`,
+    })),
+  }
+
   const Layout = layouts[post.layout || defaultLayout]
-  console.log('post.toc', post.toc)
 
   return (
     <>
