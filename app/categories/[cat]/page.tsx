@@ -10,17 +10,15 @@ import { Metadata } from 'next'
 import MainContainer from '@/components/MainContainer'
 import categoriesData from '@/data/categoriesData'
 
-// TODO: check !!! no tags but categories. DONE
 export async function generateMetadata({ params }: { params: { cat: string } }): Promise<Metadata> {
   const category = decodeURI(params.cat)
-  console.log('@@@category', category)
   return genPageMetadata({
     title: category,
     description: `${siteMetadata.title} content in the ${category} category`,
     alternates: {
       canonical: './',
       types: {
-        'application/rss+xml': `${siteMetadata.siteUrl}/categories/${category}/feed.xml`, // TODO: no tags/, /categories!!!
+        'application/rss+xml': `${siteMetadata.siteUrl}/categories/${category}/feed.xml`,
       },
     },
   })
