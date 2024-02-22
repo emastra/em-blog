@@ -8,6 +8,7 @@ import tagData from 'app/tag-data.json'
 import { genPageMetadata } from 'app/seo'
 import { Metadata } from 'next'
 import MainContainer from '@/components/MainContainer'
+import categoriesData from '@/data/categoriesData'
 
 // TODO: check !!! no tags but categories. DONE
 export async function generateMetadata({ params }: { params: { cat: string } }): Promise<Metadata> {
@@ -25,13 +26,17 @@ export async function generateMetadata({ params }: { params: { cat: string } }):
   })
 }
 
-// TODO: check
+// TODO: check: uso l'abbreviazione "cat". perchè la dinamic route è cat?
 export const generateStaticParams = async () => {
-  const tagCounts = tagData as Record<string, number>
-  const tagKeys = Object.keys(tagCounts)
-  const paths = tagKeys.map((tag) => ({
-    cat: encodeURI(tag),
+  // const tagCounts = tagData as Record<string, number>
+  // const tagKeys = Object.keys(tagCounts)
+  // const paths = tagKeys.map((tag) => ({
+  //   cat: encodeURI(tag),
+  // }))
+  const paths = categoriesData.map((c) => ({
+    cat: encodeURI(c.name),
   }))
+
   return paths
 }
 
