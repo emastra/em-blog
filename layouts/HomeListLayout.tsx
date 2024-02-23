@@ -49,58 +49,38 @@ export default function HomeListLayout({
           <ul>
             {displayPosts.map((post) => {
               const { path, date, title, summary, category } = post
+              console.log('@', path, title)
+
               return (
-                <li key={path} className="group my-12 first:mt-0">
+                <li key={slug(title)} className="my-12 first:mt-0">
                   <article className="flex flex-col">
-                    {/* <dl>
-                      <dt className="sr-only">Published on</dt>
-                      <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                        <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
-                      </dd>
-                    </dl> */}
-                    {/* <div className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                      {['node-js'].map((cat) => (
-                        <span className="">{cat}</span>
-                      ))}
-                    </div> */}
                     <div className="mb-4 ml-[-4px]">
                       <CategoryLabel name={category} />
                     </div>
-                    <div className="">
-                      <div>
-                        <h3 className="text-2xl font-bold leading-8 tracking-tight">
-                          <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
-                            {title}
-                          </Link>
-                        </h3>
-                      </div>
-                      {/* <div className="flex flex-wrap">
-                        {tags.map((tag) => (
-                          <Tag key={tag} text={tag} />
-                        ))}
-                      </div> */}
-                      {/* <div className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                        {['orientamento'].map((cat) => (
-                          <span className="mr-2 rounded-lg bg-gray-200 px-[10px] py-[7px] text-sm font-medium text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600">
-                            {cat}
-                          </span>
-                        ))}
-                      </div> */}
+
+                    <div className="group">
+                      <h3 className="text-2xl font-bold leading-8 tracking-tight">
+                        <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
+                          {title}
+                        </Link>
+                      </h3>
                       <div className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
                         <div>Lorem ipsum lorem ipsum ya ya ya lorem ipsum</div>
                       </div>
+
                       <div className="prose mt-3 max-w-none text-gray-800 dark:text-gray-200">
                         {summary}
                       </div>
-                    </div>
-                    <div className="mt-3 text-base font-medium leading-6">
-                      <Link
-                        href={`/${path}`}
-                        className="text-gray-900 group-hover:text-primary-600 dark:text-gray-100"
-                        aria-label={`Read more: "${title}"`}
-                      >
-                        Read more &rarr;
-                      </Link>
+
+                      <div className="mt-3 text-base font-medium leading-6">
+                        <Link
+                          href={`/${path}`}
+                          className="text-gray-900 group-hover:text-primary-600 dark:text-gray-100"
+                          aria-label={`Read more: "${title}"`}
+                        >
+                          Read more &rarr;
+                        </Link>
+                      </div>
                     </div>
                   </article>
                 </li>
