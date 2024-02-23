@@ -81,6 +81,16 @@ module.exports = () => {
         },
       ]
     },
+    // // https://nextjs.org/docs/app/building-your-application/routing/redirecting#redirects-in-nextconfigjs
+    // async redirects() {
+    //   return [
+    //     {
+    //       source: '/blog',
+    //       destination: '/articles', // '/'?
+    //       permanent: true,
+    //     },
+    //   ]
+    // },
     webpack: (config, options) => {
       config.module.rules.push({
         test: /\.svg$/,
