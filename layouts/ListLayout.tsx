@@ -7,7 +7,8 @@ import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Blog } from 'contentlayer/generated'
 import Link from '@/components/Link'
 // import Tag from '@/components/Tag'
-import CategoryLabel from '@/components/CategoryLabel'
+// import CategoryLabel from '@/components/CategoryLabel'
+import ArticleCard from '@/components/ArticleCard'
 import siteMetadata from '@/data/siteMetadata'
 
 interface PaginationProps {
@@ -121,7 +122,8 @@ export default function ListLayout({
           {displayPosts.map((post) => {
             const { path, date, title, summary, category } = post
             return (
-              <li key={path} className="group my-12 first:mt-0">
+              <li key={path} className="my-12 first:mt-0">
+                <ArticleCard path={path} title={title} summary={summary} category={category} />
                 {/* <article>
                   <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
                     <div>image</div>
@@ -161,43 +163,6 @@ export default function ListLayout({
                     </div>
                   </div>
                 </article> */}
-                <article className="flex flex-col">
-                  {/* <dl>
-                    <dt className="sr-only">Published on</dt>
-                    <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                      <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
-                    </dd>
-                  </dl> */}
-                  <div className="mb-4 ml-[-4px]">
-                    <CategoryLabel name={category} />
-                  </div>
-                  <div className="">
-                    <div>
-                      <h3 className="text-2xl font-bold leading-8 tracking-tight">
-                        <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
-                          {title}
-                        </Link>
-                      </h3>
-                    </div>
-                    {/* <div className="flex flex-wrap">
-                        {tags.map((tag) => (
-                          <Tag key={tag} text={tag} />
-                        ))}
-                      </div> */}
-                    <div className="prose mt-3 max-w-none text-gray-800 dark:text-gray-200">
-                      {summary}
-                    </div>
-                  </div>
-                  <div className="mt-3 text-base font-medium leading-6">
-                    <Link
-                      href={`/${path}`}
-                      className="text-gray-900 group-hover:text-primary-600 dark:text-gray-100"
-                      aria-label={`Read more: "${title}"`}
-                    >
-                      Read more &rarr;
-                    </Link>
-                  </div>
-                </article>
               </li>
             )
           })}
