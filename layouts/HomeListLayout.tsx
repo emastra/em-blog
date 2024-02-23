@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 'use client'
-// posso levallo se non uso usepath???
+// TODO: posso levallo se non uso usepath???
 
 import { usePathname } from 'next/navigation'
 import { slug } from 'github-slugger'

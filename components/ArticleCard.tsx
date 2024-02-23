@@ -1,12 +1,14 @@
 import Link from '@/components/Link'
 import CategoryLabel from './CategoryLabel'
 
-const ArticleCard = ({ path, title, summary, category }) => {
+const ArticleCard = ({ path, title, summary, category, isLabel = true }) => {
   return (
     <article className="flex flex-col">
-      <div className="mb-4 ml-[-4px]">
-        <CategoryLabel name={category} />
-      </div>
+      {isLabel && (
+        <div className="mb-4 ml-[-4px]">
+          <CategoryLabel name={category} />
+        </div>
+      )}
       <Link href={`/${path}`} className="group">
         <h3 className="text-2xl font-bold leading-8 tracking-tight text-gray-900 dark:text-gray-100">
           {title}

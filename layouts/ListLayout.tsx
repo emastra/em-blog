@@ -70,6 +70,9 @@ export default function ListLayout({
   pagination,
   hasSearch = false,
 }: ListLayoutProps) {
+  const pathname = usePathname()
+
+  // TODO: to remove?
   const [searchValue, setSearchValue] = useState('')
   const filteredBlogPosts = posts.filter((post) => {
     const searchContent = post.title + post.summary + post.category
@@ -123,7 +126,13 @@ export default function ListLayout({
             const { path, date, title, summary, category } = post
             return (
               <li key={path} className="my-12 first:mt-0">
-                <ArticleCard path={path} title={title} summary={summary} category={category} />
+                <ArticleCard
+                  path={path}
+                  title={title}
+                  summary={summary}
+                  category={category}
+                  isLabel={!pathname.includes('categories')}
+                />
                 {/* <article>
                   <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
                     <div>image</div>
