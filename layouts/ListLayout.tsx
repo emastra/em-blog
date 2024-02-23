@@ -10,6 +10,7 @@ import Link from '@/components/Link'
 // import CategoryLabel from '@/components/CategoryLabel'
 import ArticleCard from '@/components/ArticleCard'
 import siteMetadata from '@/data/siteMetadata'
+import { slug } from 'github-slugger'
 
 interface PaginationProps {
   totalPages: number
@@ -120,12 +121,13 @@ export default function ListLayout({
             </div>
           )} */}
         </div>
-        <ul className="">
+        <ul>
+          {/* TODO: check why filteredBlogPosts VS displayPosts */}
           {!filteredBlogPosts.length && 'No posts found.'}
           {displayPosts.map((post) => {
             const { path, date, title, summary, category } = post
             return (
-              <li key={path} className="my-12 first:mt-0">
+              <li key={slug(title)} className="my-12 first:mt-0">
                 <ArticleCard
                   path={path}
                   title={title}
@@ -133,45 +135,6 @@ export default function ListLayout({
                   category={category}
                   isLabel={!pathname.includes('categories')}
                 />
-                {/* <article>
-                  <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
-                    <div>image</div>
-                    <dl>
-                      <dt className="sr-only">Published on</dt>
-                      <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                        <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
-                      </dd>
-                    </dl>
-                    <div className="space-y-5 xl:col-span-3">
-                      <div className="space-y-6">
-                        <div>
-                          <h2 className="text-2xl font-bold leading-8 tracking-tight">
-                            <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
-                              {title}
-                            </Link>
-                          </h2>
-                          <div className="flex flex-wrap">
-                            {tags.map((tag) => (
-                              <Tag key={tag} text={tag} />
-                            ))}
-                          </div>
-                        </div>
-                        <div className="prose max-w-none text-gray-500 dark:text-gray-400">
-                          {summary}
-                        </div>
-                      </div>
-                      <div className="text-base font-medium leading-6">
-                        <Link
-                          href={`/${path}`}
-                          className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                          aria-label={`Read more: "${title}"`}
-                        >
-                          Read more &rarr;
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </article> */}
               </li>
             )
           })}
