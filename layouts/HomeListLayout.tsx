@@ -10,6 +10,7 @@ import type { Blog } from 'contentlayer/generated'
 import Link from '@/components/Link'
 // import Tag from '@/components/Tag'
 import CategoryLabel from '@/components/CategoryLabel'
+import ArticleCard from '@/components/ArticleCard'
 // import siteMetadata from '@/data/siteMetadata'
 // import tagData from 'app/tag-data.json'
 import categoriesData, { CategoryName } from '@/data/categoriesData'
@@ -49,32 +50,9 @@ export default function HomeListLayout({
           <ul>
             {displayPosts.map((post) => {
               const { path, date, title, summary, category } = post
-              console.log('@', path, title)
-
               return (
                 <li key={slug(title)} className="my-12 first:mt-0">
-                  <article className="flex flex-col">
-                    <div className="mb-4 ml-[-4px]">
-                      <CategoryLabel name={category} />
-                    </div>
-                    <Link href={`/${path}`} className="group">
-                      <h3 className="text-2xl font-bold leading-8 tracking-tight text-gray-900 dark:text-gray-100">
-                        {title}
-                      </h3>
-                      <h4 className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                        Lorem ipsum lorem ipsum ya ya ya lorem ipsum subtitle
-                      </h4>
-                      <p className="prose mt-3 max-w-none text-gray-800 dark:text-gray-200">
-                        {summary}
-                      </p>
-                      <div
-                        aria-label={`Read more: "${title}"`}
-                        className="mt-3 text-base font-medium leading-6 text-gray-900 group-hover:text-primary-600 dark:text-gray-100"
-                      >
-                        Read more &rarr;
-                      </div>
-                    </Link>
-                  </article>
+                  <ArticleCard path={path} title={title} summary={summary} category={category} />
                 </li>
               )
             })}
