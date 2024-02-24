@@ -38,6 +38,9 @@ export const generateStaticParams = async () => {
   return paths
 }
 
+// TODO: same as in /articles/page.tsx
+const POSTS_PER_PAGE = 10
+
 // TODO: DONE?: controlla bene se devo usare slug in giro per l'app, e se nome, capitalization, sluggization è consistente in giro. E SE la cat sono piu parole !!
 export default function CategoryPage({ params }: { params: { cat: string } }) {
   const cat = decodeURI(params.cat)
@@ -48,11 +51,17 @@ export default function CategoryPage({ params }: { params: { cat: string } }) {
   const filteredPosts = allCoreContent(
     sortPosts(allBlogs.filter((post) => post.category && slug(post.category) === cat))
   )
+  const initialDisplayPosts = filteredPosts.slice(0, POSTS_PER_PAGE)
 
   return (
     <MainContainer>
       <div className="mt-16">
-        <ListLayout posts={filteredPosts} title={title} />
+        <ListLayout
+          posts={filteredPosts}
+          title={title}
+          initialDisplayPosts={initialDisplayPosts}
+          perPage={POSTS_PER_PAGE}
+        />
       </div>
     </MainContainer>
   )
