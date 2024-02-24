@@ -6,23 +6,20 @@ import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
 import { allBlogs } from 'contentlayer/generated'
 import { genPageMetadata } from 'app/seo'
 
-const POSTS_PER_PAGE = 20
+const POSTS_PER_PAGE = 10
 
 export const metadata = genPageMetadata({ title: 'Articles' }) // !! TODO: update this. check how genPageMetadata works
 
 export default function ArticlesPage() {
   const posts = allCoreContent(sortPosts(allBlogs))
-  const pageNumber = 1
+  // const pageNumber = 1
   // TODO:
   // Check quale data viene visualiizata. Published or Modified? Decidi come visualizzare date.
-  const initialDisplayPosts = posts.slice(
-    POSTS_PER_PAGE * (pageNumber - 1),
-    POSTS_PER_PAGE * pageNumber
-  )
-  const pagination = {
-    currentPage: pageNumber,
-    totalPages: Math.ceil(posts.length / POSTS_PER_PAGE),
-  }
+  const initialDisplayPosts = posts.slice(0, POSTS_PER_PAGE)
+  // const pagination = {
+  //   currentPage: pageNumber,
+  //   totalPages: Math.ceil(posts.length / POSTS_PER_PAGE),
+  // }
 
   return (
     <>
@@ -31,7 +28,8 @@ export default function ArticlesPage() {
           <ListLayout
             posts={posts}
             initialDisplayPosts={initialDisplayPosts}
-            pagination={pagination}
+            // pagination={pagination}
+            perPage={POSTS_PER_PAGE}
             title="Tutti gli articoli"
           />
         </div>

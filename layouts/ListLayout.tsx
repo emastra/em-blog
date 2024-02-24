@@ -1,4 +1,6 @@
 'use client'
+// In questo componente c'era la search e la pagination
+// vedi: https://github.com/timlrx/tailwind-nextjs-starter-blog/blob/main/layouts/ListLayout.tsx
 
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
@@ -12,67 +14,78 @@ import ArticleCard from '@/components/ArticleCard'
 import siteMetadata from '@/data/siteMetadata'
 import { slug } from 'github-slugger'
 
-interface PaginationProps {
-  totalPages: number
-  currentPage: number
-}
+// interface PaginationProps {
+//   totalPages: number
+//   currentPage: number
+// }
 interface ListLayoutProps {
   posts: CoreContent<Blog>[]
   title: string
   initialDisplayPosts?: CoreContent<Blog>[]
-  pagination?: PaginationProps
+  // pagination?: PaginationProps
+  perPage: number
   hasSearch?: boolean
 }
 
-function Pagination({ totalPages, currentPage }: PaginationProps) {
-  const pathname = usePathname()
-  const basePath = pathname.split('/')[1]
-  const prevPage = currentPage - 1 > 0
-  const nextPage = currentPage + 1 <= totalPages
+// function Pagination({ totalPages, currentPage }: PaginationProps) {
+//   const pathname = usePathname()
+//   const basePath = pathname.split('/')[1]
+//   const prevPage = currentPage - 1 > 0
+//   const nextPage = currentPage + 1 <= totalPages
 
-  return (
-    <div className="space-y-2 pb-8 pt-6 md:space-y-5">
-      <nav className="flex justify-between">
-        {!prevPage && (
-          <button className="cursor-auto disabled:opacity-50" disabled={!prevPage}>
-            Previous
-          </button>
-        )}
-        {prevPage && (
-          <Link
-            href={currentPage - 1 === 1 ? `/${basePath}/` : `/${basePath}/page/${currentPage - 1}`}
-            rel="prev"
-          >
-            Previous
-          </Link>
-        )}
-        <span>
-          {currentPage} of {totalPages}
-        </span>
-        {!nextPage && (
-          <button className="cursor-auto disabled:opacity-50" disabled={!nextPage}>
-            Next
-          </button>
-        )}
-        {nextPage && (
-          <Link href={`/${basePath}/page/${currentPage + 1}`} rel="next">
-            Next
-          </Link>
-        )}
-      </nav>
-    </div>
-  )
-}
+//   return (
+//     <div className="space-y-2 pb-8 pt-6 md:space-y-5">
+//       <nav className="flex justify-between">
+//         {!prevPage && (
+//           <button className="cursor-auto disabled:opacity-50" disabled={!prevPage}>
+//             Previous
+//           </button>
+//         )}
+//         {prevPage && (
+//           <Link
+//             href={currentPage - 1 === 1 ? `/${basePath}/` : `/${basePath}/page/${currentPage - 1}`}
+//             rel="prev"
+//           >
+//             Previous
+//           </Link>
+//         )}
+//         <span>
+//           {currentPage} of {totalPages}
+//         </span>
+//         {!nextPage && (
+//           <button className="cursor-auto disabled:opacity-50" disabled={!nextPage}>
+//             Next
+//           </button>
+//         )}
+//         {nextPage && (
+//           <Link href={`/${basePath}/page/${currentPage + 1}`} rel="next">
+//             Next
+//           </Link>
+//         )}
+//       </nav>
+//     </div>
+//   )
+// }
 
 export default function ListLayout({
   posts,
   title,
   initialDisplayPosts = [],
-  pagination,
+  // pagination,
+  perPage,
   hasSearch = false,
 }: ListLayoutProps) {
-  const pathname = usePathname()
+  const [displayedPosts, setDisplayedPosts] = useState(initialDisplayPosts)
+  const [loadMoreCount, setLoadMoreCount] = useState(2) // (initialDisplayPosts.length / perPage) + 1
 
+  const loadMorePosts = () => {
+    const nextPosts = posts.slice(0, loadMoreCount * perPage)
+    console.log('loadMorePosts: nextPosts:', nextPosts)
+    setDisplayedPosts(nextPosts)
+    setLoadMoreCount(loadMoreCount + 1)
+  }
+
+  const pathname = usePathname()
   // TODO: to remove?
   const [searchValue, setSearchValue] = useState('')
   const filteredBlogPosts = posts.filter((post) => {
@@ -82,7 +95,7 @@ export default function ListLayout({
 
   // If initialDisplayPosts exist, display it if no searchValue is specified
   const displayPosts =
-    initialDisplayPosts.length > 0 && !searchValue ? initialDisplayPosts : filteredBlogPosts
+    displayedPosts.length > 0 && !searchValue ? displayedPosts : filteredBlogPosts
 
   return (
     <>
@@ -139,10 +152,21 @@ export default function ListLayout({
             )
           })}
         </ul>
+        {displayPosts.length < posts.length && (
+          <div className="mt-4">
+            {/* hover:bg-primary-400 dark:hover:bg-primary-600 */}
+            <button
+              onClick={loadMorePosts}
+              className="rounded-md border border-primary-500 px-4 py-2 text-gray-900 dark:text-gray-100"
+            >
+              Load More
+            </button>
+          </div>
+        )}
       </div>
-      {pagination && pagination.totalPages > 1 && !searchValue && (
+      {/* {pagination && pagination.totalPages > 1 && !searchValue && (
         <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
-      )}
+      )} */}
     </>
   )
 }
