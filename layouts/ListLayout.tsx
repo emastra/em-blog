@@ -12,8 +12,8 @@ import { slug } from 'github-slugger'
 interface ListLayoutProps {
   posts: CoreContent<Blog>[]
   title: string
-  initialDisplayPosts?: CoreContent<Blog>[]
-  perPage: number
+  initialDisplayPosts: CoreContent<Blog>[]
+  perPage?: number
 }
 
 export default function ListLayout({

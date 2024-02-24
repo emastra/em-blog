@@ -2,42 +2,23 @@
 'use client'
 // TODO: posso levallo se non uso usepath???
 
-import { usePathname } from 'next/navigation'
 import { slug } from 'github-slugger'
-import { formatDate } from 'pliny/utils/formatDate'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Blog } from 'contentlayer/generated'
 import Link from '@/components/Link'
-// import Tag from '@/components/Tag'
 import CategoryLabel from '@/components/CategoryLabel'
 import ArticleCard from '@/components/ArticleCard'
-// import siteMetadata from '@/data/siteMetadata'
-// import tagData from 'app/tag-data.json'
-import categoriesData, { CategoryName } from '@/data/categoriesData'
+import categoriesData from '@/data/categoriesData'
+import type { CategoryName } from '@/data/categoriesData'
 import NewsletterBox from '@/components/NewsletterBox'
 
-interface PaginationProps {
-  totalPages: number
-  currentPage: number
-}
-interface ListLayoutProps {
-  posts: CoreContent<Blog>[]
-  title: string
-  initialDisplayPosts?: CoreContent<Blog>[]
-  pagination?: PaginationProps
+interface HomeListLayoutProps {
+  displayPosts: CoreContent<Blog>[]
 }
 
 const POPULAR_CATEGORIES: CategoryName[] = ['Orientamento', 'HTML', 'CSS', 'Javascript', 'Linux']
 
-export default function HomeListLayout({
-  posts,
-  title,
-  initialDisplayPosts = [],
-  pagination,
-}: ListLayoutProps) {
-  // const pathname = usePathname()
-  const displayPosts = initialDisplayPosts.length > 0 ? initialDisplayPosts : posts
-
+export default function HomeListLayout({ displayPosts }: HomeListLayoutProps) {
   return (
     <>
       <div className="grid grid-cols-6 gap-8">
@@ -85,7 +66,8 @@ export default function HomeListLayout({
               </h2>
             </div>
             <ul>
-              {posts.slice(0, 8).map((p) => {
+              {/* TODO: use popularPosts */}
+              {displayPosts.slice(0, 6).map((p) => {
                 return (
                   <li key={p.slug} className="my-3">
                     <Link
