@@ -14,23 +14,24 @@ interface ListLayoutProps {
   title: string
   initialDisplayPosts?: CoreContent<Blog>[]
   perPage: number
-  hasSearch?: boolean
 }
 
 export default function ListLayout({
   posts,
   title,
-  initialDisplayPosts = [],
+  initialDisplayPosts,
   perPage = 10,
-  hasSearch = false,
 }: ListLayoutProps) {
   const pathname = usePathname()
-  const [displayedPosts, setDisplayedPosts] = useState(initialDisplayPosts)
+  const [displayPosts, setDisplayPosts] = useState(initialDisplayPosts || [])
   const [loadMoreCount, setLoadMoreCount] = useState(2) // (initialDisplayPosts.length / perPage) + 1
 
+  // Se voglio il loadMoreCount inizializzato a 1,
+  // devo avere loadMorePosts solo con setLoadMoreCount(loadMoreCount + 1)
+  // e mettere il resto in un useEffect con [loadMoreCount] as trigger
   const loadMorePosts = () => {
     const nextPosts = posts.slice(0, loadMoreCount * perPage)
-    setDisplayedPosts(nextPosts)
+    setDisplayPosts(nextPosts)
     setLoadMoreCount(loadMoreCount + 1)
   }
 
@@ -42,8 +43,8 @@ export default function ListLayout({
         </h1>
       </div>
       <ul>
-        {!displayedPosts.length && 'No posts found.'}
-        {displayedPosts.map((post) => {
+        {!displayPosts.length && 'No posts found.'}
+        {displayPosts.map((post) => {
           const { path, date, title, summary, category } = post
           return (
             <li key={slug(title)} className="my-12 first:mt-0">
@@ -58,7 +59,7 @@ export default function ListLayout({
           )
         })}
       </ul>
-      {displayedPosts.length < posts.length && (
+      {displayPosts.length < posts.length && (
         <div className="mt-4">
           {/* hover:bg-primary-400 dark:hover:bg-primary-600 */}
           <button
