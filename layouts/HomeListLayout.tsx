@@ -48,7 +48,7 @@ export default function HomeListLayout({ displayPosts }: HomeListLayoutProps) {
                 .filter((cat) => POPULAR_CATEGORIES.includes(cat.name))
                 .map((cat) => {
                   return (
-                    <li key={slug(cat.name)} className="my-[10px] inline-block">
+                    <li key={slug(cat.name)} className="mb-3 inline-block">
                       <CategoryLabel name={cat.name} size="md" />
                     </li>
                   )

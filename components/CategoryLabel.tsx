@@ -14,7 +14,7 @@ const CategoryLabel = ({ name, size = 'sm' }: Props) => {
     // transform transition duration-100 hover:scale-125
     <Link
       href={`/categories/${slug(name)}`}
-      className={`mr-2 rounded-lg bg-gray-200 ${padding} ${fontSize} font-medium text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600`}
+      className={`mr-2 inline-block rounded-lg bg-gray-200 ${padding} ${fontSize} font-medium text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600`}
       aria-label={`View posts in ${name} category`}
     >
       {slug(name)}

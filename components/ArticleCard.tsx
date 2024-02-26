@@ -5,7 +5,7 @@ const ArticleCard = ({ path, title, summary, category, isLabel = true }) => {
   return (
     <article className="flex flex-col">
       {isLabel && (
-        <div className="mb-4 ml-[-4px]">
+        <div className="mb-3 ml-[-4px]">
           <CategoryLabel name={category} />
         </div>
       )}
